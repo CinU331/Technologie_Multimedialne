@@ -23,49 +23,54 @@
 	<Button
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
 		android:id="@+id/button1"
 		android:text="Podaj czas" />
 	<TextView
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_centerInParent="true"
+		android:layout_centerHorizontal="true"
 		android:layout_below="@id/button1"
 		android:id="@+id/textView1" />
 	<Button
 		android:text="Podaj datę"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
 		android:layout_below="@id/textView1"
 		android:id="@+id/button2" />
 	<TextView
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_centerInParent="true"
+		android:layout_centerHorizontal="true"
 		android:layout_below="@id/button2"
 		android:id="@+id/textView2" />
 	<CheckBox
 		android:text="Inny kolor"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:padding= "?android:attr/listPreferredItemPaddingStart"
+		android:padding= "?android:attr/listPreferredItemPaddingStart"	
 		android:id="@+id/checkBox1" />
 	<TextView
 		android:text="Wprowadź nazwę leku:"
 		android:inputType="text"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
 		android:layout_below="@id/textView2"
 		android:id="@+id/textView3" />
 	<EditText
 		android:inputType="textPersonName"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
 		android:layout_below="@id/textView3"
 		android:id="@+id/editText1" />
 	<Button
 		android:text="Dodaj przypomnienie"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
 		android:layout_below="@id/editText1"
 		android:id="@+id/button3" />
 
