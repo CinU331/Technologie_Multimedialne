@@ -13,6 +13,7 @@ namespace MedicationTracker
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener
     {
+        bool isOnConstructor = true;
         ListView listView;
         List<Reminder> mlist;
         ReminderAdapter adapter;
@@ -26,6 +27,10 @@ namespace MedicationTracker
         Button generateReminder;
         DateTime globalDate;
         DateTime globalTime;
+        Spinner medicamentSpinner;
+        ArrayAdapter medicamentAdapter;
+        TextView optionalTextView;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -70,6 +75,12 @@ namespace MedicationTracker
                 else
                     layout.SetBackgroundColor(Color.White);
             };
+            medicamentSpinner = FindViewById<Spinner>(Resource.Id.spinner1);
+            medicamentAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, ListOfMedicaments.Medicaments);
+            medicamentSpinner.Adapter = medicamentAdapter;
+            medicamentSpinner.ItemSelected += MedicamentSpinner_ItemSelected;
+            optionalTextView = FindViewById<TextView>(Resource.Id.textView4);
+
 
             listView.Visibility = ViewStates.Visible;
             timePicker.Visibility = ViewStates.Invisible;
@@ -80,18 +91,40 @@ namespace MedicationTracker
             medicineName.Visibility = ViewStates.Invisible;
             medicineNameTextView.Visibility = ViewStates.Invisible;
             generateReminder.Visibility = ViewStates.Invisible;
+            medicamentSpinner.Visibility = ViewStates.Invisible;
+            optionalTextView.Visibility = ViewStates.Invisible;
+        }
+
+        private void MedicamentSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            if(!isOnConstructor)
+            {
+                Toast.MakeText(this, ListOfMedicaments.Medicaments[e.Position], ToastLength.Short).Show();
+            }
         }
 
         private void GenerateClicked(object sender, EventArgs e)
         {
-            if (timeTextView != null && dateTextView != null && medicineNameTextView != null)
+            if (timeTextView != null && dateTextView != null)
             {
-                mlist.Add(new Reminder
+                if (medicineNameTextView != null && medicineName.Text != "")
                 {
-                    Medicine = medicineName.Text,
-                    Date = globalDate,
-                    Time = globalTime
-                });
+                    mlist.Add(new Reminder
+                    {
+                        Medicine = medicineName.Text,
+                        Date = globalDate,
+                        Time = globalTime
+                    });
+                }
+                else
+                {
+                    mlist.Add(new Reminder
+                    {
+                        Medicine = ListOfMedicaments.Medicaments[medicamentSpinner.SelectedItemPosition],
+                        Date = globalDate,
+                        Time = globalTime
+                    });
+                }
             }
         }
 
@@ -140,8 +173,11 @@ namespace MedicationTracker
                     medicineName.Visibility = ViewStates.Invisible;
                     medicineNameTextView.Visibility = ViewStates.Invisible;
                     generateReminder.Visibility = ViewStates.Invisible;
+                    medicamentSpinner.Visibility = ViewStates.Invisible;
+                    optionalTextView.Visibility = ViewStates.Invisible;
                     return true;
                 case Resource.Id.navigation_calendar:
+                    isOnConstructor = false;
                     listView.Visibility = ViewStates.Invisible;
                     checkBox.Visibility = ViewStates.Invisible;
                     timePicker.Visibility = ViewStates.Visible;
@@ -151,6 +187,8 @@ namespace MedicationTracker
                     medicineName.Visibility = ViewStates.Visible;
                     medicineNameTextView.Visibility = ViewStates.Visible;
                     generateReminder.Visibility = ViewStates.Visible;
+                    medicamentSpinner.Visibility = ViewStates.Visible;
+                    optionalTextView.Visibility = ViewStates.Visible;
                     return true;
                 case Resource.Id.navigation_settings:
                     checkBox.Visibility = ViewStates.Visible;
@@ -162,6 +200,8 @@ namespace MedicationTracker
                     medicineName.Visibility = ViewStates.Invisible;
                     medicineNameTextView.Visibility = ViewStates.Invisible;
                     generateReminder.Visibility = ViewStates.Invisible;
+                    medicamentSpinner.Visibility = ViewStates.Invisible;
+                    optionalTextView.Visibility = ViewStates.Invisible;
                     return true;
             }
             return false;

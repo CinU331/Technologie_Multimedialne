@@ -26,19 +26,55 @@
 		android:layout_centerHorizontal="true"
 		android:id="@+id/button1"
 		android:text="Podaj czas" />
+	<Button
+		android:text="Podaj datę"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
+		android:layout_below="@+id/button1"
+		android:id="@+id/button2" />
+	<TextView
+		android:text="Wybierz nazwę leku:"
+		android:inputType="text"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
+		android:layout_below="@+id/button2"
+		android:id="@+id/textView3"
+		android:layout_marginBottom="0.0dp" />
+	<Spinner
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/textView3"
+		android:layout_centerHorizontal="true"
+		android:id="@+id/spinner1"/>
+	<TextView
+		android:text="Lub wpisz własną nazwę: "
+		android:inputType="text"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
+		android:layout_below="@+id/spinner1"
+		android:id="@+id/textView4"
+		android:layout_marginBottom="0.0dp" />
+
+	<EditText
+		android:inputType="textPersonName"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
+		android:layout_below="@+id/textView4"
+		android:id="@+id/editText1"
+		android:layout_marginTop="0.0dp" />
 	<TextView
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_centerHorizontal="true"
 		android:layout_below="@id/button1"
 		android:id="@+id/textView1" />
-	<Button
-		android:text="Podaj datę"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
-		android:layout_below="@id/textView1"
-		android:id="@+id/button2" />
+
+
+
 	<TextView
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
@@ -49,23 +85,9 @@
 		android:text="Inny kolor"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:padding= "?android:attr/listPreferredItemPaddingStart"	
+		android:padding= "?android:attr/listPreferredItemPaddingStart"
 		android:id="@+id/checkBox1" />
-	<TextView
-		android:text="Wprowadź nazwę leku:"
-		android:inputType="text"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
-		android:layout_below="@id/textView2"
-		android:id="@+id/textView3" />
-	<EditText
-		android:inputType="textPersonName"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
-		android:layout_below="@id/textView3"
-		android:id="@+id/editText1" />
+	
 	<Button
 		android:text="Dodaj przypomnienie"
 		android:layout_width="wrap_content"
