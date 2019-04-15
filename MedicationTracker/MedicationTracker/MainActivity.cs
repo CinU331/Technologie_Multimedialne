@@ -143,6 +143,7 @@ namespace MedicationTracker
                         Time = globalTime
                     });
                 }
+                adapter.NotifyDataSetChanged();
             }
         }
 
