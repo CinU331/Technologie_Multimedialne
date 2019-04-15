@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:fillViewport="true">
+<RelativeLayout
 	android:id="@+id/container"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
@@ -11,6 +15,42 @@
 		android:layout_height="wrap_content"
 		android:padding= "?android:attr/listPreferredItemPaddingStart"
 		android:id="@+id/listView1" />
+	<GridLayout
+		android:layout_width="match_parent"
+        android:layout_height="wrap_content"    
+        android:rowCount="2"
+        android:columnCount="2"
+		android:orientation="horizontal"
+		android:layout_centerHorizontal="true"
+		android:paddingHorizontal="20dp"
+		android:id="@+id/gridLayout1">
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true"
+			android:id="@+id/button1"
+			android:text="Podaj czas" />
+		<Button
+			android:text="Podaj datę"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true"
+			android:layout_below="@+id/button1"
+			android:id="@+id/button2"/>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true"
+			android:layout_below="@id/button1"
+			android:id="@+id/textView1" />
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true"
+			android:layout_below="@id/button2"
+			android:id="@+id/textView2" />
+	</GridLayout>
+
 	<android.support.design.widget.BottomNavigationView
 		android:id="@+id/navigation"
 		android:layout_width="wrap_content"
@@ -20,20 +60,7 @@
 		android:background="?android:attr/windowBackground"
 		android:layout_alignParentBottom="true"
 		app:menu="@menu/navigation" />
-	<Button
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
-		android:id="@+id/button1"
-		android:text="Podaj czas" />
-	<Button
-		android:text="Podaj datę"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
-		android:layout_below="@+id/button1"
-		android:id="@+id/button2"
-		android:layout_marginTop="16.5dp" />
+	
 	<TextView
 		android:text="Wybierz nazwę leku:"
 		android:inputType="text"
@@ -42,7 +69,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_centerHorizontal="true"
-		android:layout_below="@+id/button2"
+		android:layout_below="@+id/gridLayout1"
 		android:id="@+id/textView3"
 		android:layout_marginBottom="0.0dp"
 		android:layout_marginTop="16.5dp" />
@@ -72,21 +99,6 @@
 		android:layout_below="@+id/textView4"
 		android:id="@+id/editText1"
 		android:layout_marginTop="0.0dp" />
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
-		android:layout_below="@id/button1"
-		android:id="@+id/textView1" />
-
-
-
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
-		android:layout_below="@id/button2"
-		android:id="@+id/textView2" />
 	<CheckBox
 		android:text="Inny kolor"
 		android:layout_width="wrap_content"
@@ -101,5 +113,5 @@
 		android:layout_centerHorizontal="true"
 		android:layout_below="@id/editText1"
 		android:id="@+id/button3" />
-
 </RelativeLayout>
+</ScrollView>
