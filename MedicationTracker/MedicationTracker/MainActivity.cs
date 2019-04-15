@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using System;
 using System.Collections.Generic;
+using AlertDialog = Android.App.AlertDialog;
 
 namespace MedicationTracker
 {
@@ -108,6 +109,17 @@ namespace MedicationTracker
                     
                     mlist.RemoveAt(e.Position);
                     adapter.NotifyDataSetChanged();
+                }
+                if (arg.Item.TitleFormatted.ToString() == "Details")
+                {
+                    var builder = new AlertDialog.Builder(this);
+                    builder.SetTitle("Details");
+                    builder.SetMessage("First application:"
+                                     + "\nDate: " + mlist[e.Position].Date.ToString("yyyy-MM-dd")
+                                     + "\nTime: " + mlist[e.Position].Time.ToString("HH:mm")
+                                     + "\n\nPortion"
+                                     + "\nInterval");
+                    builder.Show();
                 }
             };
             popupMenu.Show();

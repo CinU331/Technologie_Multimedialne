@@ -2525,6 +2525,9 @@ namespace MedicationTracker
 			// aapt resource value: 0x7f0800a1
 			public const int design_navigation_view = 2131230881;
 			
+			// aapt resource value: 0x7f0800bd
+			public const int details_option = 2131230909;
+			
 			// aapt resource value: 0x7f080020
 			public const int disableHome = 2131230752;
 			
@@ -2645,17 +2648,17 @@ namespace MedicationTracker
 			// aapt resource value: 0x7f080092
 			public const int navigation = 2131230866;
 			
-			// aapt resource value: 0x7f0800be
-			public const int navigation_calendar = 2131230910;
+			// aapt resource value: 0x7f0800bf
+			public const int navigation_calendar = 2131230911;
 			
 			// aapt resource value: 0x7f0800a0
 			public const int navigation_header_container = 2131230880;
 			
-			// aapt resource value: 0x7f0800bd
-			public const int navigation_home = 2131230909;
+			// aapt resource value: 0x7f0800be
+			public const int navigation_home = 2131230910;
 			
-			// aapt resource value: 0x7f0800bf
-			public const int navigation_settings = 2131230911;
+			// aapt resource value: 0x7f0800c0
+			public const int navigation_settings = 2131230912;
 			
 			// aapt resource value: 0x7f08003b
 			public const int never = 2131230779;
