@@ -49,6 +49,7 @@ namespace MedicationTracker
             adapter = new ReminderAdapter(this, mlist);
             listView.Adapter = adapter;
             listView.ItemClick += ListView_ItemClick;
+            listView.ItemLongClick += ListView_ItemLongClick;
 
             BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
             navigation.SetOnNavigationItemSelectedListener(this);
@@ -93,6 +94,23 @@ namespace MedicationTracker
             generateReminder.Visibility = ViewStates.Invisible;
             medicamentSpinner.Visibility = ViewStates.Invisible;
             optionalTextView.Visibility = ViewStates.Invisible;
+        }
+
+        private void ListView_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
+        {
+            PopupMenu popupMenu = new PopupMenu(this, (View)sender);
+            popupMenu.MenuInflater.Inflate(Resource.Menu.EventPopUpMenu, popupMenu.Menu);
+
+            popupMenu.MenuItemClick += (s, arg) =>
+            {
+                if(arg.Item.TitleFormatted.ToString() == "Delete")
+                {
+                    
+                    mlist.RemoveAt(e.Position);
+                    adapter.NotifyDataSetChanged();
+                }
+            };
+            popupMenu.Show();
         }
 
         private void MedicamentSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)

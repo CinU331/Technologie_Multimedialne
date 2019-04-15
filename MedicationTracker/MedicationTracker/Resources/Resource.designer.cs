@@ -2507,6 +2507,9 @@ namespace MedicationTracker
 			// aapt resource value: 0x7f080060
 			public const int default_activity_button = 2131230816;
 			
+			// aapt resource value: 0x7f0800bb
+			public const int delete_option = 2131230907;
+			
 			// aapt resource value: 0x7f08009c
 			public const int design_bottom_sheet = 2131230876;
 			
@@ -2639,17 +2642,17 @@ namespace MedicationTracker
 			// aapt resource value: 0x7f08008d
 			public const int navigation = 2131230861;
 			
-			// aapt resource value: 0x7f0800bc
-			public const int navigation_calendar = 2131230908;
+			// aapt resource value: 0x7f0800bd
+			public const int navigation_calendar = 2131230909;
 			
 			// aapt resource value: 0x7f08009f
 			public const int navigation_header_container = 2131230879;
 			
-			// aapt resource value: 0x7f0800bb
-			public const int navigation_home = 2131230907;
+			// aapt resource value: 0x7f0800bc
+			public const int navigation_home = 2131230908;
 			
-			// aapt resource value: 0x7f0800bd
-			public const int navigation_settings = 2131230909;
+			// aapt resource value: 0x7f0800be
+			public const int navigation_settings = 2131230910;
 			
 			// aapt resource value: 0x7f08003b
 			public const int never = 2131230779;
@@ -3162,7 +3165,10 @@ namespace MedicationTracker
 		{
 			
 			// aapt resource value: 0x7f0e0000
-			public const int navigation = 2131623936;
+			public const int EventPopUpMenu = 2131623936;
+			
+			// aapt resource value: 0x7f0e0001
+			public const int navigation = 2131623937;
 			
 			static Menu()
 			{
