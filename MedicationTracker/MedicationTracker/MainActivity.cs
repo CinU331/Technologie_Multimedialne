@@ -22,6 +22,7 @@ namespace MedicationTracker
         Button datePicker;
         TextView timeTextView;
         TextView dateTextView;
+        TextView portionIntervalText;
         CheckBox checkBox;
         EditText medicineName;
         EditText portionDescription;
@@ -29,6 +30,7 @@ namespace MedicationTracker
         DateTime globalDate;
         DateTime globalTime;
         Spinner medicamentSpinner;
+        Spinner intervalSpinner;
         ArrayAdapter medicamentAdapter;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -42,7 +44,9 @@ namespace MedicationTracker
                 {
                     Medicine = "Apap",
                     Date = DateTime.Parse("2019-03-21"),
-                    Time = DateTime.Parse("02:25")
+                    Time = DateTime.Parse("02:25"),
+                    Portion = "1 cała tabletka",
+                    Interval = 12
                 }
             };
             listView = FindViewById<ListView>(Resource.Id.listView1);
@@ -72,6 +76,11 @@ namespace MedicationTracker
             portionDescription = FindViewById<EditText>(Resource.Id.editText2);
             portionDescription.AfterTextChanged += PortionDescription_AfterTextChanged1;
 
+            portionIntervalText = FindViewById<TextView>(Resource.Id.textView3);
+            intervalSpinner = FindViewById<Spinner>(Resource.Id.spinner2);
+            var intervalsAdapter = ArrayAdapter.CreateFromResource(this, Resource.Array.Intervals, Android.Resource.Layout.SimpleListItem1);
+            intervalSpinner.Adapter = intervalsAdapter;
+
             generateReminder = FindViewById<Button>(Resource.Id.button3);
             generateReminder.Click += GenerateClicked;
 
@@ -99,6 +108,8 @@ namespace MedicationTracker
             portionDescription.Visibility = ViewStates.Invisible;
             generateReminder.Visibility = ViewStates.Invisible;
             medicamentSpinner.Visibility = ViewStates.Invisible;
+            intervalSpinner.Visibility = ViewStates.Invisible;
+            portionIntervalText.Visibility = ViewStates.Invisible;
 
             generateReminder.Enabled = false;
         }
@@ -158,21 +169,21 @@ namespace MedicationTracker
 
             popupMenu.MenuItemClick += (s, arg) =>
             {
-                if(arg.Item.TitleFormatted.ToString() == "Delete")
+                if(arg.Item.TitleFormatted.ToString() == "Usuń")
                 {
                     
                     mlist.RemoveAt(e.Position);
                     adapter.NotifyDataSetChanged();
                 }
-                if (arg.Item.TitleFormatted.ToString() == "Details")
+                if (arg.Item.TitleFormatted.ToString() == "Szczegóły")
                 {
                     var builder = new AlertDialog.Builder(this);
-                    builder.SetTitle("Details");
-                    builder.SetMessage("First application:"
-                                     + "\nDate: " + mlist[e.Position].Date.ToString("yyyy-MM-dd")
-                                     + "\nTime: " + mlist[e.Position].Time.ToString("HH:mm")
-                                     + "\n\nPortion"
-                                     + "\nInterval");
+                    builder.SetTitle("Szczegóły");
+                    builder.SetMessage("Pierwsze przyjęcie:"
+                                     + "\nData: " + mlist[e.Position].Date.ToString("yyyy-MM-dd")
+                                     + "\nGodzina: " + mlist[e.Position].Time.ToString("HH:mm")
+                                     + "\n\nPorcja: " + mlist[e.Position].Portion
+                                     + "\nOdstęp czasu[godz]: " + mlist[e.Position].Interval);
                     builder.Show();
                 }
             };
@@ -197,7 +208,9 @@ namespace MedicationTracker
                     {
                         Medicine = medicineName.Text,
                         Date = globalDate,
-                        Time = globalTime
+                        Time = globalTime,
+                        Portion = portionDescription.Text,
+                        Interval = int.Parse((string)intervalSpinner.SelectedItem)
                     });
                 }
                 else
@@ -206,7 +219,9 @@ namespace MedicationTracker
                     {
                         Medicine = ListOfMedicaments.Medicaments[medicamentSpinner.SelectedItemPosition],
                         Date = globalDate,
-                        Time = globalTime
+                        Time = globalTime,
+                        Portion = portionDescription.Text,
+                        Interval = int.Parse((string)intervalSpinner.SelectedItem)
                     });
                 }
                 adapter.NotifyDataSetChanged();
@@ -267,6 +282,8 @@ namespace MedicationTracker
                     generateReminder.Visibility = ViewStates.Invisible;
                     medicamentSpinner.Visibility = ViewStates.Invisible;
                     portionDescription.Visibility = ViewStates.Invisible;
+                    intervalSpinner.Visibility = ViewStates.Invisible;
+                    portionIntervalText.Visibility = ViewStates.Invisible;
                     return true;
                 case Resource.Id.navigation_calendar:
                     isOnConstructor = false;
@@ -280,6 +297,8 @@ namespace MedicationTracker
                     generateReminder.Visibility = ViewStates.Visible;
                     medicamentSpinner.Visibility = ViewStates.Visible;
                     portionDescription.Visibility = ViewStates.Visible;
+                    intervalSpinner.Visibility = ViewStates.Visible;
+                    portionIntervalText.Visibility = ViewStates.Visible;
                     return true;
                 case Resource.Id.navigation_settings:
                     checkBox.Visibility = ViewStates.Visible;
@@ -292,6 +311,8 @@ namespace MedicationTracker
                     generateReminder.Visibility = ViewStates.Invisible;
                     medicamentSpinner.Visibility = ViewStates.Invisible;
                     portionDescription.Visibility = ViewStates.Invisible;
+                    intervalSpinner.Visibility = ViewStates.Invisible;
+                    portionIntervalText.Visibility = ViewStates.Invisible;
                     return true;
             }
             return false;

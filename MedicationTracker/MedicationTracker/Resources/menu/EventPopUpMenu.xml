@@ -2,8 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
   <item
       android:id="@+id/delete_option"
-      android:title="Delete" />
+      android:title="Usuń" />
   <item
       android:id="@+id/details_option"
-      android:title="Details" />
+      android:title="Szczegóły" />
+  <item
+      android:id="@+id/edit_option"
+      android:title="Edycja" />
 </menu>
