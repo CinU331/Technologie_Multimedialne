@@ -24,6 +24,7 @@ namespace MedicationTracker
         TextView dateTextView;
         CheckBox checkBox;
         EditText medicineName;
+        EditText portionDescription;
         Button generateReminder;
         DateTime globalDate;
         DateTime globalTime;
@@ -55,14 +56,21 @@ namespace MedicationTracker
 
             timePicker = FindViewById<Button>(Resource.Id.button1);
             timePicker.Click += TimeSelectOnClick;
+
             timeTextView = FindViewById<TextView>(Resource.Id.textView1);
+            timeTextView.AfterTextChanged += TimeTextView_AfterTextChanged;
 
             datePicker = FindViewById<Button>(Resource.Id.button2);
             datePicker.Click += DateSelectOnClick;
+
             dateTextView = FindViewById<TextView>(Resource.Id.textView2);
+            dateTextView.AfterTextChanged += DateTextView_AfterTextChanged;
 
             medicineName = FindViewById<EditText>(Resource.Id.editText1);
             medicineName.AfterTextChanged += MedicineName_AfterTextChanged;
+
+            portionDescription = FindViewById<EditText>(Resource.Id.editText2);
+            portionDescription.AfterTextChanged += PortionDescription_AfterTextChanged1;
 
             generateReminder = FindViewById<Button>(Resource.Id.button3);
             generateReminder.Click += GenerateClicked;
@@ -88,8 +96,47 @@ namespace MedicationTracker
             dateTextView.Visibility = ViewStates.Invisible;
             checkBox.Visibility = ViewStates.Invisible;
             medicineName.Visibility = ViewStates.Invisible;
+            portionDescription.Visibility = ViewStates.Invisible;
             generateReminder.Visibility = ViewStates.Invisible;
             medicamentSpinner.Visibility = ViewStates.Invisible;
+
+            generateReminder.Enabled = false;
+        }
+
+        private void DateTextView_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
+        {
+            if (dateTextView.Text.Length == 0)
+            {
+                generateReminder.Enabled = false;
+            }
+            else if(timeTextView.Text.Length != 0 && portionDescription.Text.Length != 0)
+            {
+                generateReminder.Enabled = true;
+            }
+        }
+
+        private void TimeTextView_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
+        {
+            if (timeTextView.Text.Length == 0)
+            {
+                generateReminder.Enabled = false;
+            }
+            else if(dateTextView.Text.Length != 0 && portionDescription.Text.Length != 0)
+            {
+                generateReminder.Enabled = true;
+            }
+        }
+
+        private void PortionDescription_AfterTextChanged1(object sender, Android.Text.AfterTextChangedEventArgs e)
+        {
+            if(portionDescription.Text.Length == 0)
+            {
+                generateReminder.Enabled = false;
+            }
+            else if(timeTextView.Text.Length != 0 && dateTextView.Text.Length != 0)
+            {
+                generateReminder.Enabled = true;
+            }
         }
 
         private void MedicineName_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
@@ -163,6 +210,14 @@ namespace MedicationTracker
                     });
                 }
                 adapter.NotifyDataSetChanged();
+                var toast = Toast.MakeText(this, "Przypomnienie dodane pomyślnie", ToastLength.Long);
+                timeTextView.Text = "";
+                dateTextView.Text = "";
+                portionDescription.Text = "";
+                medicineName.Text = "";
+                generateReminder.Enabled = false;
+
+                toast.Show();
             }
         }
 
@@ -211,6 +266,7 @@ namespace MedicationTracker
                     medicineName.Visibility = ViewStates.Invisible;
                     generateReminder.Visibility = ViewStates.Invisible;
                     medicamentSpinner.Visibility = ViewStates.Invisible;
+                    portionDescription.Visibility = ViewStates.Invisible;
                     return true;
                 case Resource.Id.navigation_calendar:
                     isOnConstructor = false;
@@ -223,6 +279,7 @@ namespace MedicationTracker
                     medicineName.Visibility = ViewStates.Visible;
                     generateReminder.Visibility = ViewStates.Visible;
                     medicamentSpinner.Visibility = ViewStates.Visible;
+                    portionDescription.Visibility = ViewStates.Visible;
                     return true;
                 case Resource.Id.navigation_settings:
                     checkBox.Visibility = ViewStates.Visible;
@@ -234,6 +291,7 @@ namespace MedicationTracker
                     medicineName.Visibility = ViewStates.Invisible;
                     generateReminder.Visibility = ViewStates.Invisible;
                     medicamentSpinner.Visibility = ViewStates.Invisible;
+                    portionDescription.Visibility = ViewStates.Invisible;
                     return true;
             }
             return false;
