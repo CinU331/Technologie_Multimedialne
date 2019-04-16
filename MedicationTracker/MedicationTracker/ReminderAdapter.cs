@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Views;
 using Android.Widget;
+using System;
 using System.Collections.Generic;
 
 namespace MedicationTracker
@@ -31,7 +32,22 @@ namespace MedicationTracker
             View view = convertView; // re-use an existing view, if one is available
             if (view == null) // otherwise create a new one
                 view = context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItem1, null);
-            view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = list[position].Medicine + "\n" + list[position].Date.ToString("yyyy-MM-dd") + " " + list[position].Time.ToString("HH:mm");
+
+            DateTime currentTime = DateTime.Now;
+            DateTime initTime = new DateTime(list[position].Date.Year, list[position].Date.Month, list[position].Date.Day,
+                                             list[position].Time.Hour, list[position].Time.Minute, list[position].Time.Second);
+            TextView tmp = view.FindViewById<TextView>(Android.Resource.Id.Text1);
+            TimeSpan diffrence;
+            string text = tmp.Text;
+            while (initTime < currentTime)
+            {
+                initTime = initTime.AddHours(list[position].Interval);
+            }
+            diffrence = initTime - currentTime;
+            
+            tmp.SetText(list[position].Medicine + "\n" + "Pozostało " + diffrence.Hours + "g " + diffrence.Minutes + "m", TextView.BufferType.Normal);
+            tmp.TextAlignment = TextAlignment.Center;
+            text = tmp.Text;
             return view;
         }
     }

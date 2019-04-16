@@ -43,10 +43,10 @@ namespace MedicationTracker
                 new Reminder
                 {
                     Medicine = "Apap",
-                    Date = DateTime.Parse("2019-03-21"),
-                    Time = DateTime.Parse("02:25"),
+                    Date = DateTime.Now,
+                    Time = DateTime.Now,
                     Portion = "1 cała tabletka",
-                    Interval = 12
+                    Interval = 6
                 }
             };
             listView = FindViewById<ListView>(Resource.Id.listView1);
@@ -186,9 +186,15 @@ namespace MedicationTracker
                                      + "\nOdstęp czasu[godz]: " + mlist[e.Position].Interval);
                     builder.Show();
                 }
+                if (arg.Item.TitleFormatted.ToString() == "Edycja")
+                {
+
+
+                }
             };
             popupMenu.Show();
         }
+
 
         private void MedicamentSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
