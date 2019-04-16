@@ -116,7 +116,7 @@
 
 
         <CheckBox
-                android:text="Inny kolor"
+                android:text="Tryb nocny"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="?android:attr/listPreferredItemPaddingStart"

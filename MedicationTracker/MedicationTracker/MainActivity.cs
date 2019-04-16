@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using AlertDialog = Android.App.AlertDialog;
 
 namespace MedicationTracker
@@ -16,7 +17,7 @@ namespace MedicationTracker
     {
         bool isOnConstructor = true;
         ListView listView;
-        List<Reminder> mlist;
+        List<Reminder> remainders;
         ReminderAdapter adapter;
         Button timePicker;
         Button datePicker;
@@ -33,12 +34,13 @@ namespace MedicationTracker
         Spinner intervalSpinner;
         ArrayAdapter medicamentAdapter;
 
+        TextView spinnerStyle;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
 
-            mlist = new List<Reminder>
+            remainders = new List<Reminder>
             {
                 new Reminder
                 {
@@ -50,9 +52,8 @@ namespace MedicationTracker
                 }
             };
             listView = FindViewById<ListView>(Resource.Id.listView1);
-            adapter = new ReminderAdapter(this, mlist);
+            adapter = new ReminderAdapter(this, remainders);
             listView.Adapter = adapter;
-            listView.ItemClick += ListView_ItemClick;
             listView.ItemLongClick += ListView_ItemLongClick;
 
             BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
@@ -86,12 +87,22 @@ namespace MedicationTracker
 
             checkBox = FindViewById<CheckBox>(Resource.Id.checkBox1);
             var layout = FindViewById<RelativeLayout>(Resource.Id.container);
+            layout.SetBackgroundColor(Color.ParseColor("#8be88b"));
+            navigation.SetBackgroundColor(Color.ParseColor("#4b634b"));
             checkBox.Click += (o, e) => {
                 if (checkBox.Checked)
-                    layout.SetBackgroundColor(Color.LightSeaGreen);
+                {
+                    layout.SetBackgroundColor(Color.ParseColor("#38393a"));
+                    navigation.SetBackgroundColor(Color.ParseColor("#445484"));
+                }
                 else
-                    layout.SetBackgroundColor(Color.White);
+                {
+                    layout.SetBackgroundColor(Color.ParseColor("#8be88b"));
+                    navigation.SetBackgroundColor(Color.ParseColor("#4b634b"));
+                }
             };
+            spinnerStyle = new TextView(this);
+            spinnerStyle.SetTextColor(Color.Red);
             medicamentSpinner = FindViewById<Spinner>(Resource.Id.spinner1);
             medicamentAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, ListOfMedicaments.Medicaments);
             medicamentSpinner.Adapter = medicamentAdapter;
@@ -172,7 +183,7 @@ namespace MedicationTracker
                 if(arg.Item.TitleFormatted.ToString() == "Usuń")
                 {
                     
-                    mlist.RemoveAt(e.Position);
+                    remainders.RemoveAt(e.Position);
                     adapter.NotifyDataSetChanged();
                 }
                 if (arg.Item.TitleFormatted.ToString() == "Szczegóły")
@@ -180,10 +191,10 @@ namespace MedicationTracker
                     var builder = new AlertDialog.Builder(this);
                     builder.SetTitle("Szczegóły");
                     builder.SetMessage("Pierwsze przyjęcie:"
-                                     + "\nData: " + mlist[e.Position].Date.ToString("yyyy-MM-dd")
-                                     + "\nGodzina: " + mlist[e.Position].Time.ToString("HH:mm")
-                                     + "\n\nPorcja: " + mlist[e.Position].Portion
-                                     + "\nOdstęp czasu[godz]: " + mlist[e.Position].Interval);
+                                     + "\nData: " + remainders[e.Position].Date.ToString("yyyy-MM-dd")
+                                     + "\nGodzina: " + remainders[e.Position].Time.ToString("HH:mm")
+                                     + "\n\nPorcja: " + remainders[e.Position].Portion
+                                     + "\nOdstęp[godz]: " + remainders[e.Position].Interval);
                     builder.Show();
                 }
                 if (arg.Item.TitleFormatted.ToString() == "Edycja")
@@ -210,7 +221,7 @@ namespace MedicationTracker
             {
                 if (medicineName.Text != "")
                 {
-                    mlist.Add(new Reminder
+                    remainders.Add(new Reminder
                     {
                         Medicine = medicineName.Text,
                         Date = globalDate,
@@ -221,7 +232,7 @@ namespace MedicationTracker
                 }
                 else
                 {
-                    mlist.Add(new Reminder
+                    remainders.Add(new Reminder
                     {
                         Medicine = ListOfMedicaments.Medicaments[medicamentSpinner.SelectedItemPosition],
                         Date = globalDate,
@@ -263,14 +274,6 @@ namespace MedicationTracker
                 });
 
             frag.Show(FragmentManager, TimePickerFragment.TAG);
-        }
-
-        private void ListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
-        {
-            var select = mlist[e.Position].Medicine;
-            Toast toast = Toast.MakeText(this, select, ToastLength.Long);
-            toast.SetGravity(GravityFlags.Bottom, 0, 200);
-            toast.Show();
         }
 
         public bool OnNavigationItemSelected(IMenuItem item)

@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">MedicationTracker</string>
-    <string name="title_home">Start</string>
-    <string name="title_calendar">Kalendarz</string>
+    <string name="title_home">Przypomnienia</string>
+    <string name="title_calendar">Dodaj</string>
     <string name="title_settings">Ustawienia</string>
-    <string name="medicament_prompt">Choose medicament</string>
 </resources>
