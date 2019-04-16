@@ -23,14 +23,12 @@ namespace MedicationTracker
         TextView timeTextView;
         TextView dateTextView;
         CheckBox checkBox;
-        TextView medicineNameTextView;
         EditText medicineName;
         Button generateReminder;
         DateTime globalDate;
         DateTime globalTime;
         Spinner medicamentSpinner;
         ArrayAdapter medicamentAdapter;
-        TextView optionalTextView;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -63,8 +61,8 @@ namespace MedicationTracker
             datePicker.Click += DateSelectOnClick;
             dateTextView = FindViewById<TextView>(Resource.Id.textView2);
 
-            medicineNameTextView = FindViewById<TextView>(Resource.Id.textView3);
             medicineName = FindViewById<EditText>(Resource.Id.editText1);
+            medicineName.AfterTextChanged += MedicineName_AfterTextChanged;
 
             generateReminder = FindViewById<Button>(Resource.Id.button3);
             generateReminder.Click += GenerateClicked;
@@ -81,7 +79,6 @@ namespace MedicationTracker
             medicamentAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, ListOfMedicaments.Medicaments);
             medicamentSpinner.Adapter = medicamentAdapter;
             medicamentSpinner.ItemSelected += MedicamentSpinner_ItemSelected;
-            optionalTextView = FindViewById<TextView>(Resource.Id.textView4);
 
 
             listView.Visibility = ViewStates.Visible;
@@ -91,10 +88,20 @@ namespace MedicationTracker
             dateTextView.Visibility = ViewStates.Invisible;
             checkBox.Visibility = ViewStates.Invisible;
             medicineName.Visibility = ViewStates.Invisible;
-            medicineNameTextView.Visibility = ViewStates.Invisible;
             generateReminder.Visibility = ViewStates.Invisible;
             medicamentSpinner.Visibility = ViewStates.Invisible;
-            optionalTextView.Visibility = ViewStates.Invisible;
+        }
+
+        private void MedicineName_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
+        {
+            if(medicineName.Text.Length != 0)
+            {
+                medicamentSpinner.Enabled = false;
+            }
+            else
+            {
+                medicamentSpinner.Enabled = true;
+            }
         }
 
         private void ListView_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
@@ -137,7 +144,7 @@ namespace MedicationTracker
         {
             if (timeTextView != null && dateTextView != null)
             {
-                if (medicineNameTextView != null && medicineName.Text != "")
+                if (medicineName.Text != "")
                 {
                     mlist.Add(new Reminder
                     {
@@ -202,10 +209,8 @@ namespace MedicationTracker
                     dateTextView.Visibility = ViewStates.Invisible;
                     checkBox.Visibility = ViewStates.Invisible;
                     medicineName.Visibility = ViewStates.Invisible;
-                    medicineNameTextView.Visibility = ViewStates.Invisible;
                     generateReminder.Visibility = ViewStates.Invisible;
                     medicamentSpinner.Visibility = ViewStates.Invisible;
-                    optionalTextView.Visibility = ViewStates.Invisible;
                     return true;
                 case Resource.Id.navigation_calendar:
                     isOnConstructor = false;
@@ -216,10 +221,8 @@ namespace MedicationTracker
                     datePicker.Visibility = ViewStates.Visible;
                     dateTextView.Visibility = ViewStates.Visible;
                     medicineName.Visibility = ViewStates.Visible;
-                    medicineNameTextView.Visibility = ViewStates.Visible;
                     generateReminder.Visibility = ViewStates.Visible;
                     medicamentSpinner.Visibility = ViewStates.Visible;
-                    optionalTextView.Visibility = ViewStates.Visible;
                     return true;
                 case Resource.Id.navigation_settings:
                     checkBox.Visibility = ViewStates.Visible;
@@ -229,10 +232,8 @@ namespace MedicationTracker
                     datePicker.Visibility = ViewStates.Invisible;
                     dateTextView.Visibility = ViewStates.Invisible;
                     medicineName.Visibility = ViewStates.Invisible;
-                    medicineNameTextView.Visibility = ViewStates.Invisible;
                     generateReminder.Visibility = ViewStates.Invisible;
                     medicamentSpinner.Visibility = ViewStates.Invisible;
-                    optionalTextView.Visibility = ViewStates.Invisible;
                     return true;
             }
             return false;

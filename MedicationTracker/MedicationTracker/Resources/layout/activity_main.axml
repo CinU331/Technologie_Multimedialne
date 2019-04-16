@@ -15,41 +15,65 @@
 		android:layout_height="wrap_content"
 		android:padding= "?android:attr/listPreferredItemPaddingStart"
 		android:id="@+id/listView1" />
-	<GridLayout
-		android:layout_width="match_parent"
-        android:layout_height="wrap_content"    
-        android:rowCount="2"
-        android:columnCount="2"
-		android:orientation="horizontal"
-		android:layout_centerHorizontal="true"
-		android:paddingHorizontal="20dp"
-		android:id="@+id/gridLayout1">
-		<Button
-			android:layout_width="wrap_content"
+	<TableLayout
+			android:shrinkColumns="@android:string/yes"
+			android:gravity="center_horizontal"
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_centerHorizontal="true"
-			android:id="@+id/button1"
-			android:text="Podaj czas" />
-		<Button
-			android:text="Podaj datę"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_centerHorizontal="true"
-			android:layout_below="@+id/button1"
-			android:id="@+id/button2"/>
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_centerHorizontal="true"
-			android:layout_below="@id/button1"
-			android:id="@+id/textView1" />
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_centerHorizontal="true"
-			android:layout_below="@id/button2"
-			android:id="@+id/textView2" />
-	</GridLayout>
+			android:id="@+id/gridLayout1">
+		<TableRow
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+			<Button
+					android:layout_weight="1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="3dip"
+					android:id="@+id/button1"
+					android:text="Podaj czas" />
+			<Button
+					android:layout_weight="1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="3dip"
+					android:text="Podaj datę"
+					android:id="@+id/button2"/>
+		</TableRow>
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+			<TextView
+					android:layout_weight="1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="3dip"
+					android:id="@+id/textView1" />
+			<TextView
+					android:layout_weight="1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="3dip"
+					android:id="@+id/textView2" />
+		</TableRow>
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+			<Spinner
+					android:layout_weight="1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="3dip"
+					android:id="@+id/spinner1"/>
+			<EditText
+					android:layout_weight="1"
+					android:hint="Nazwa leku"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="3dip"
+					android:inputType="textPersonName"
+					android:id="@+id/editText1"/>
+		</TableRow>
+	</TableLayout>
 
 	<android.support.design.widget.BottomNavigationView
 		android:id="@+id/navigation"
@@ -61,43 +85,7 @@
 		android:layout_alignParentBottom="true"
 		app:menu="@menu/navigation" />
 	
-	<TextView
-		android:text="Wybierz nazwę leku:"
-		android:inputType="text"
-		android:textColor="@android:color/holo_red_dark"
-		android:textStyle="bold"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
-		android:layout_below="@+id/gridLayout1"
-		android:id="@+id/textView3"
-		android:layout_marginBottom="0.0dp" />
-	<Spinner
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_below="@+id/textView3"
-		android:layout_centerHorizontal="true"
-		android:id="@+id/spinner1"/>
-	<TextView
-		android:text="lub wpisz własną nazwę: "
-		android:textColor="@android:color/holo_red_dark"
-		android:textStyle="bold"
-		android:inputType="text"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
-		android:layout_below="@+id/spinner1"
-		android:id="@+id/textView4"
-		android:layout_marginBottom="0.0dp" />
-
-	<EditText
-		android:inputType="textPersonName"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
-		android:layout_below="@+id/textView4"
-		android:id="@+id/editText1"
-		android:layout_marginTop="0.0dp" />
+	
 	<CheckBox
 		android:text="Inny kolor"
 		android:layout_width="wrap_content"
@@ -110,7 +98,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_centerHorizontal="true"
-		android:layout_below="@id/editText1"
+		android:layout_below="@+id/gridLayout1"
 		android:id="@+id/button3" />
 </RelativeLayout>
 </ScrollView>
