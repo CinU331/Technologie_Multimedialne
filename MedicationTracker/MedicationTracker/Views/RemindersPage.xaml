@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MedicationTracker.Views.RemindersPage"
+             Title="{Binding Title}"
+             x:Name="BrowseRemindersPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="AddReminder_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="add.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="RemindersListView"
+                      ItemsSource="{Binding Reminders}"
+                      VerticalOptions="FillAndExpand"
+                      HasUnevenRows="True"
+                      RefreshCommand="{Binding LoadRemindersCommand}"
+                      IsPullToRefreshEnabled="True"
+                      IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                      CachingStrategy="RecycleElement"
+                      ItemSelected="OnReminderSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="10">
+                                <Image Source="{Binding Medicine.Image.Source}" HeightRequest="64" VerticalOptions="Center" />
+                                <StackLayout Orientation="Vertical" VerticalOptions="Center" WidthRequest="240">
+                                    <Label Text="{Binding Medicine.Name}" />
+                                    <Label Text="{Binding Medicine.Description}" />
+                                </StackLayout>
+                                <Label Text="{Binding Date}" VerticalOptions="Center" />
+                                <Image Source="https://cdn.pixabay.com/photo/2018/06/29/08/15/doodle-3505459_960_720.png" HorizontalOptions="End" HeightRequest="64" VerticalOptions="Center" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

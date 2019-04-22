@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MedicationTracker.Views.ReminderDetailPage"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+            <StackLayout Orientation="Horizontal">
+                <Image Source="{Binding Reminder.Medicine.Image.Source}" HeightRequest="128" />
+                <StackLayout Orientation="Vertical">
+                    <Label Text="{Binding Reminder.Medicine.Name}" />
+                    <Label Text="{Binding Reminder.Medicine.Description}" />
+                </StackLayout>
+            </StackLayout>
+            <Label Text="{Binding Reminder.Date}" />
+            <Label Text="{Binding Reminder.Portion}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
