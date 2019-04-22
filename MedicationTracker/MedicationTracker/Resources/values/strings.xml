@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">MedicationTracker</string>
-    <string name="title_home">Przypomnienia</string>
-    <string name="title_calendar">Dodaj</string>
-    <string name="title_settings">Ustawienia</string>
-</resources>
