@@ -7,9 +7,24 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center">
-            <DatePicker />
-            <TimePicker />
-            <BoxView />
+            <DatePicker HorizontalOptions="Center" />
+            <TimePicker HorizontalOptions="Center" />
+            <ListView ItemsSource="{Binding Medicines}"
+                      HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="10">
+                                <Image Source="{Binding Image.Source}" HeightRequest="64" VerticalOptions="Center" />
+                                <StackLayout Orientation="Vertical" VerticalOptions="Center">
+                                    <Label Text="{Binding Name}" FontSize="Medium" />
+                                    <Label Text="{Binding Description}" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             <Entry />
         </StackLayout>
     </ContentPage.Content>

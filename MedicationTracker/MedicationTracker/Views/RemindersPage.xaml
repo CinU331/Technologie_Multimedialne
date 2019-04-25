@@ -27,14 +27,16 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal" Padding="10">
-                                <Image Source="{Binding Medicine.Image.Source}" HeightRequest="64" VerticalOptions="Center" />
-                                <StackLayout Orientation="Vertical" VerticalOptions="Center" WidthRequest="240">
-                                    <Label Text="{Binding Medicine.Name}" />
-                                    <Label Text="{Binding Medicine.Description}" />
+                            <StackLayout Orientation="Vertical" Padding="10" VerticalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding Medicine.Image.Source}" HeightRequest="64" VerticalOptions="Center" />
+                                    <StackLayout Orientation="Vertical" VerticalOptions="Center" WidthRequest="240">
+                                        <Label Text="{Binding Medicine.Name}" FontSize="Medium" />
+                                        <Label Text="{Binding Medicine.Description}" />
+                                    </StackLayout>
+                                    <Label Text="{Binding Date}" VerticalOptions="Center" />
+                                    <Image Source="https://cdn.pixabay.com/photo/2018/06/29/08/15/doodle-3505459_960_720.png" HorizontalOptions="End" HeightRequest="64" VerticalOptions="Center" />
                                 </StackLayout>
-                                <Label Text="{Binding Date}" VerticalOptions="Center" />
-                                <Image Source="https://cdn.pixabay.com/photo/2018/06/29/08/15/doodle-3505459_960_720.png" HorizontalOptions="End" HeightRequest="64" VerticalOptions="Center" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
