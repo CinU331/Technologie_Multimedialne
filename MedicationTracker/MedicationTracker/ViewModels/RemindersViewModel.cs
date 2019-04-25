@@ -30,6 +30,13 @@ namespace MedicationTracker.ViewModels
                 await ReminderDataStore.AddItemAsync(newReminder);
             });
 
+            MessagingCenter.Subscribe<ReminderDetailViewModel, Reminder>(this, "DeleteReminder", async (obj, reminder) =>
+            {
+                Reminder oldReminder = reminder as Reminder;
+                Reminders.Remove(oldReminder);
+                await ReminderDataStore.DeleteItemAsync(oldReminder.ID);
+            });
+
             LoadRemindersCommand = new Command(async () => await ExecuteLoadRemindersCommand());
         }
 
