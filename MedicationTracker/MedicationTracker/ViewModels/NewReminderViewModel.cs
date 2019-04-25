@@ -1,7 +1,57 @@
-﻿namespace MedicationTracker.ViewModels
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Windows.Input;
+
+using Xamarin.Forms;
+
+using MedicationTracker.Models;
+using MedicationTracker.Views;
+
+namespace MedicationTracker.ViewModels
 {
     public class NewReminderViewModel : BaseViewModel
     {
-        public NewReminderViewModel() { }
+        public ObservableCollection<Medicine> Medicines { get; set; }
+
+        public ICommand LoadMedicinesCommand { get; private set; }
+
+        public NewReminderViewModel()
+        {
+            Title = "New reminder";
+            Medicines = new ObservableCollection<Medicine>();
+
+            MessagingCenter.Subscribe<NewReminderPage, Medicine>(this, "AddMedicine", async (obj, medicine) =>
+            {
+                Medicine newMedicine = medicine as Medicine;
+                Medicines.Add(newMedicine);
+                await MedicineDataStore.AddItemAsync(newMedicine);
+            });
+
+            LoadMedicinesCommand = new Command(async () => await ExecuteLoadMedicinesCommand());
+        }
+
+        async Task ExecuteLoadMedicinesCommand()
+        {
+            if (IsBusy) { return; }
+
+            IsBusy = true;
+
+            try
+            {
+                Medicines.Clear();
+
+                IEnumerable<Medicine> medicines = await MedicineDataStore.GetItemsAsync(true);
+
+                foreach (var m in medicines)
+                {
+                    Medicines.Add(m);
+                }
+            }
+            catch (Exception ex) { Debug.WriteLine(ex); }
+            finally { IsBusy = false; }
+        }
     }
 }
