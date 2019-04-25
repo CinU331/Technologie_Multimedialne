@@ -16,7 +16,7 @@ namespace MedicationTracker.Services
         public MockReminderDataStore()
         {
             reminders = new List<Reminder>();
-            var mockReminders = new List<Reminder>
+            List<Reminder> mockReminders = new List<Reminder>()
             {
                 new Reminder()
                 {
@@ -68,7 +68,7 @@ namespace MedicationTracker.Services
                 }
             };
 
-            foreach (var r in mockReminders)
+            foreach (Reminder r in mockReminders)
             {
                 reminders.Add(r);
             }
