@@ -12,7 +12,8 @@ namespace MedicationTracker.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Reminder> DataStore => DependencyService.Get<IDataStore<Reminder>>() ?? new MockReminderDataStore();
+        public IDataStore<Medicine> MedicineDataStore => DependencyService.Get<IDataStore<Medicine>>() ?? new MockMedicineDataStore();
+        public IDataStore<Reminder> ReminderDataStore => DependencyService.Get<IDataStore<Reminder>>() ?? new MockReminderDataStore();
         
         public bool IsBusy
         {
