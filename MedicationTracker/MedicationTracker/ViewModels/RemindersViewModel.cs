@@ -8,7 +8,6 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 using MedicationTracker.Models;
-using MedicationTracker.Views;
 
 namespace MedicationTracker.ViewModels
 {
@@ -23,7 +22,7 @@ namespace MedicationTracker.ViewModels
             Title = "Reminders";
             Reminders = new ObservableCollection<Reminder>();
 
-            MessagingCenter.Subscribe<RemindersPage, Reminder>(this, "AddReminder", async (obj, reminder) =>
+            MessagingCenter.Subscribe<NewReminderViewModel, Reminder>(this, "AddReminder", async (obj, reminder) =>
             {
                 Reminder newReminder = reminder as Reminder;
                 Reminders.Add(newReminder);

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MedicationTracker.Views.NewReminderPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Save" />
+        <ToolbarItem Text="Save" Clicked="SaveReminder_Clicked" Command="{Binding SaveReminderCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center">
@@ -26,6 +26,7 @@
                 </ListView.ItemTemplate>
             </ListView>
             <Entry />
+            <Entry Text="{Binding NewReminder.Portion}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

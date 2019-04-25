@@ -16,6 +16,11 @@ namespace MedicationTracker.Views
             BindingContext = viewModel = new NewReminderViewModel();
         }
 
+        async void SaveReminder_Clicked(object sender, System.EventArgs e)
+        {
+            await Navigation.PopModalAsync();
+        }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();

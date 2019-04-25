@@ -14,13 +14,32 @@ namespace MedicationTracker.ViewModels
 {
     public class NewReminderViewModel : BaseViewModel
     {
+        public Reminder NewReminder { get; set; }
+
         public ObservableCollection<Medicine> Medicines { get; set; }
 
         public ICommand LoadMedicinesCommand { get; private set; }
+        public ICommand SaveReminderCommand { get; private set; }
 
         public NewReminderViewModel()
         {
             Title = "New reminder";
+
+            /* TODO SECTION */
+            NewReminder = new Reminder()
+            {
+                ID = Guid.NewGuid().ToString(),
+                Medicine = new Medicine()
+                {
+                    ID = Guid.NewGuid().ToString(),
+                    Name = "Aerozol",
+                    Description = "Krystalicznie świeże powietrze"
+                },
+                Date = DateTime.Now,
+                Portion = "A lot of pills"
+            };
+            /* END TODO SECTION */
+
             Medicines = new ObservableCollection<Medicine>();
 
             MessagingCenter.Subscribe<NewReminderPage, Medicine>(this, "AddMedicine", async (obj, medicine) =>
@@ -31,6 +50,7 @@ namespace MedicationTracker.ViewModels
             });
 
             LoadMedicinesCommand = new Command(async () => await ExecuteLoadMedicinesCommand());
+            SaveReminderCommand = new Command(() => ExecuteSaveReminderCommand());
         }
 
         async Task ExecuteLoadMedicinesCommand()
@@ -52,6 +72,11 @@ namespace MedicationTracker.ViewModels
             }
             catch (Exception ex) { Debug.WriteLine(ex); }
             finally { IsBusy = false; }
+        }
+
+        void ExecuteSaveReminderCommand()
+        {
+            MessagingCenter.Send(this, "AddReminder", NewReminder);
         }
     }
 }
