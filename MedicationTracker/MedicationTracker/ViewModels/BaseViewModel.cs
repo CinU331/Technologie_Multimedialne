@@ -3,18 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-using Xamarin.Forms;
-
-using MedicationTracker.Models;
-using MedicationTracker.Services;
-
 namespace MedicationTracker.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
-    {
-        public IDataStore<Medicine> MedicineDataStore => DependencyService.Get<IDataStore<Medicine>>() ?? new MockMedicineDataStore();
-        public IDataStore<Reminder> ReminderDataStore => DependencyService.Get<IDataStore<Reminder>>() ?? new MockReminderDataStore();
-        
+    {       
         public bool IsBusy
         {
             get { return _isBusy; }

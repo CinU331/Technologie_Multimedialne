@@ -8,6 +8,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 using MedicationTracker.Models;
+using MedicationTracker.Services;
 using MedicationTracker.Views;
 
 namespace MedicationTracker.ViewModels
@@ -78,5 +79,7 @@ namespace MedicationTracker.ViewModels
         {
             MessagingCenter.Send(this, "AddReminder", NewReminder);
         }
+
+        public IDataStore<Medicine> MedicineDataStore => DependencyService.Get<IDataStore<Medicine>>() ?? new MockMedicineDataStore();
     }
 }
