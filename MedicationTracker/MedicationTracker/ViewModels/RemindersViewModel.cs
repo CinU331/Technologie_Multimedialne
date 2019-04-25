@@ -27,7 +27,7 @@ namespace MedicationTracker.ViewModels
             {
                 Reminder newReminder = reminder as Reminder;
                 Reminders.Add(newReminder);
-                await DataStore.AddItemAsync(newReminder);
+                await ReminderDataStore.AddItemAsync(newReminder);
             });
 
             LoadRemindersCommand = new Command(async () => await ExecuteLoadRemindersCommand());
@@ -43,7 +43,7 @@ namespace MedicationTracker.ViewModels
             {
                 Reminders.Clear();
 
-                IEnumerable<Reminder> reminders = await DataStore.GetItemsAsync(true);
+                IEnumerable<Reminder> reminders = await ReminderDataStore.GetItemsAsync(true);
 
                 foreach (var r in reminders)
                 {
