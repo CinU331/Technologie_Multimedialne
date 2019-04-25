@@ -35,7 +35,6 @@
                                         <Label Text="{Binding Medicine.Description}" />
                                     </StackLayout>
                                     <Label Text="{Binding Date}" VerticalOptions="Center" />
-                                    <Image Source="https://cdn.pixabay.com/photo/2018/06/29/08/15/doodle-3505459_960_720.png" HorizontalOptions="End" HeightRequest="64" VerticalOptions="Center" />
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>
