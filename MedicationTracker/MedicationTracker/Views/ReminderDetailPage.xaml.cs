@@ -5,9 +5,9 @@ using MedicationTracker.ViewModels;
 
 namespace MedicationTracker.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ReminderDetailPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ReminderDetailPage : ContentPage
+    {
         private ReminderDetailViewModel viewModel;
 
         public ReminderDetailPage()
@@ -15,10 +15,20 @@ namespace MedicationTracker.Views
             InitializeComponent();
         }
 
-		public ReminderDetailPage(ReminderDetailViewModel viewModel)
-		{
-			InitializeComponent();
+        public ReminderDetailPage(ReminderDetailViewModel viewModel)
+        {
+            InitializeComponent();
             BindingContext = this.viewModel = viewModel;
-		}
-	}
+        }
+
+        async void DeleteButton_Clicked(object sender, System.EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+        }
+    }
 }
