@@ -3,13 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MedicationTracker.Views.NewReminderPage">
     <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Clicked="CancelButton_Clicked" />
         <ToolbarItem Text="Save" Clicked="SaveReminder_Clicked" Command="{Binding SaveReminderCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Center">
-            <DatePicker HorizontalOptions="Center" />
-            <TimePicker HorizontalOptions="Center" />
+        <StackLayout VerticalOptions="Center" Padding="10">
+            <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Data:" WidthRequest="60" VerticalOptions="Center" />
+                    <DatePicker HorizontalOptions="Center" Date="{Binding SelectedDate}" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Czas:" WidthRequest="60" VerticalOptions="Center" />
+                    <TimePicker HorizontalOptions="Center" Time="{Binding SelectedTime}" />
+                </StackLayout>
+            </StackLayout>
             <ListView ItemsSource="{Binding Medicines}"
+                      SelectedItem="{Binding SelectedMedicine}"
                       HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -25,7 +35,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Entry />
+            <Entry Text="Custom medicine" />
             <Entry Text="{Binding NewReminder.Portion}" />
         </StackLayout>
     </ContentPage.Content>

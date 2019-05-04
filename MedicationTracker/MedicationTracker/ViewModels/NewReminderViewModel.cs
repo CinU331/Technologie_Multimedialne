@@ -17,6 +17,36 @@ namespace MedicationTracker.ViewModels
     {
         public Reminder NewReminder { get; set; }
 
+        public Medicine SelectedMedicine
+        {
+            get { return _medicine; }
+            set
+            {
+                _medicine = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime SelectedDate
+        {
+            get { return _date; }
+            set
+            {
+                _date = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public TimeSpan SelectedTime
+        {
+            get { return _time; }
+            set
+            {
+                _time = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ObservableCollection<Medicine> Medicines { get; set; }
 
         public ICommand LoadMedicinesCommand { get; private set; }
@@ -26,20 +56,19 @@ namespace MedicationTracker.ViewModels
         {
             Title = "New reminder";
 
-            /* TODO SECTION */
+            // Create empty reminder
             NewReminder = new Reminder()
             {
                 ID = Guid.NewGuid().ToString(),
                 Medicine = new Medicine()
                 {
                     ID = Guid.NewGuid().ToString(),
-                    Name = "Aerozol",
-                    Description = "Krystalicznie świeże powietrze"
+                    Name = "Empty",
+                    Description = "Empty"
                 },
                 Date = DateTime.Now,
-                Portion = "A lot of pills"
+                Portion = "Empty"
             };
-            /* END TODO SECTION */
 
             Medicines = new ObservableCollection<Medicine>();
 
@@ -77,9 +106,28 @@ namespace MedicationTracker.ViewModels
 
         void ExecuteSaveReminderCommand()
         {
+            if (SelectedMedicine != null)
+            {
+                NewReminder.Medicine = SelectedMedicine;
+            }
+
+            NewReminder.Date = new DateTime(
+                SelectedDate.Year,
+                SelectedDate.Month,
+                SelectedDate.Day,
+                SelectedTime.Hours,
+                SelectedTime.Minutes,
+                SelectedTime.Seconds);
+
             MessagingCenter.Send(this, "AddReminder", NewReminder);
         }
 
         public IDataStore<Medicine> MedicineDataStore => DependencyService.Get<IDataStore<Medicine>>() ?? new MockMedicineDataStore();
+
+        #region Data store
+        private Medicine _medicine { get; set; } = null;
+        private DateTime _date { get; set; } = DateTime.Now;
+        private TimeSpan _time { get; set; } = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+        #endregion
     }
 }

@@ -27,6 +27,16 @@ namespace MedicationTracker.Services
                     {
                         Source = ImageSource.FromResource("MedicationTracker.Resources.pills.png")
                     }
+                },
+                new Medicine()
+                {
+                    ID = Guid.NewGuid().ToString(),
+                    Name = "Aerozol",
+                    Description = "Krystalicznie świeże powietrze",
+                    Image = new Image()
+                    {
+                        Source = ImageSource.FromResource("MedicationTracker.Resources.pills.png")
+                    }
                 }
             };
 
