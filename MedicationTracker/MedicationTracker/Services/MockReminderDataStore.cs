@@ -28,7 +28,7 @@ namespace MedicationTracker.Services
                         Description = "Na kolana",
                         Image = new Image()
                         {
-                            Source = "https://cdn.pixabay.com/photo/2018/06/29/08/15/doodle-3505459_960_720.png"
+                            Source = ImageSource.FromResource("MedicationTracker.Resources.pills.png")
                         }
                     },
                     Date = DateTime.Now,
@@ -44,7 +44,7 @@ namespace MedicationTracker.Services
                         Description = "Na kolana",
                         Image = new Image()
                         {
-                            Source = "https://cdn.pixabay.com/photo/2018/06/29/08/15/doodle-3505459_960_720.png"
+                            Source = ImageSource.FromResource("MedicationTracker.Resources.pills.png")
                         }
                     },
                     Date = DateTime.Now,
@@ -60,7 +60,7 @@ namespace MedicationTracker.Services
                         Description = "Na kolana",
                         Image = new Image()
                         {
-                            Source = "https://cdn.pixabay.com/photo/2018/06/29/08/15/doodle-3505459_960_720.png"
+                            Source = ImageSource.FromResource("MedicationTracker.Resources.pills.png")
                         }
                     },
                     Date = DateTime.Now,
