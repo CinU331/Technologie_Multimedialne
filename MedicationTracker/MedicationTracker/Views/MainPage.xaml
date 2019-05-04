@@ -4,7 +4,7 @@
             xmlns:views="clr-namespace:MedicationTracker.Views"
             xmlns:local="clr-namespace:MedicationTracker"
             x:Class="MedicationTracker.Views.MainPage"
-            BarBackgroundColor="{x:Static local:Theme.Primary}">
+            BarBackgroundColor="{x:Static local:Theme.Secondary}">
     <TabbedPage.Children>
         <NavigationPage Title="Reminders">
             <x:Arguments>
