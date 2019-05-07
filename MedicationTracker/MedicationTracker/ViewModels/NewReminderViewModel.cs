@@ -118,6 +118,7 @@ namespace MedicationTracker.ViewModels
                 SelectedTime.Hours,
                 SelectedTime.Minutes,
                 SelectedTime.Seconds);
+            NewReminder.RemainingTime = NewReminder.Date - DateTime.Now;
 
             MessagingCenter.Send(this, "AddReminder", NewReminder);
         }

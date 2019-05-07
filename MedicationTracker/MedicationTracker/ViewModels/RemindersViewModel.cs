@@ -38,6 +38,25 @@ namespace MedicationTracker.ViewModels
             });
 
             LoadRemindersCommand = new Command(async () => await ExecuteLoadRemindersCommand());
+
+            // Refreshing time on view every 1 second
+            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+            {
+                DateTime currentTime = DateTime.Now;
+
+                for (int i = 0; i < Reminders.Count; i++)
+                {
+                    Reminders[i].RemainingTime = Reminders[i].Date - currentTime;
+
+                    // Removing old reminders
+                    if (Reminders[i].RemainingTime < -TimeSpan.FromSeconds(Settings.StaticSecondsToRemoveOldReminders))
+                    {
+                        Reminders.RemoveAt(i);
+                    }
+                }
+
+                return true;
+            });
         }
 
         async Task ExecuteLoadRemindersCommand()
