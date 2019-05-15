@@ -27,6 +27,16 @@ namespace MedicationTracker.ViewModels
             }
         }
 
+        public Medicine CustomMedicine
+        {
+            get { return _customMedicine; }
+            set
+            {
+                _customMedicine = value;
+                OnPropertyChanged();
+            }
+        }
+
         public DateTime SelectedDate
         {
             get { return _date; }
@@ -56,16 +66,19 @@ namespace MedicationTracker.ViewModels
         {
             Title = "New reminder";
 
+            // Create empty medicine
+            _customMedicine = new Medicine()
+            {
+                ID = Guid.NewGuid().ToString(),
+                Name = "",
+                Description = ""
+            };
+
             // Create empty reminder
             NewReminder = new Reminder()
             {
                 ID = Guid.NewGuid().ToString(),
-                Medicine = new Medicine()
-                {
-                    ID = Guid.NewGuid().ToString(),
-                    Name = "Empty",
-                    Description = "Empty"
-                },
+                Medicine = _customMedicine,
                 Date = DateTime.Now,
                 Portion = "Empty"
             };
@@ -106,7 +119,11 @@ namespace MedicationTracker.ViewModels
 
         void ExecuteSaveReminderCommand()
         {
-            if (SelectedMedicine != null)
+            if (CustomMedicine.Name != "")
+            {
+                NewReminder.Medicine = _customMedicine;
+            }
+            else if (SelectedMedicine != null)
             {
                 NewReminder.Medicine = SelectedMedicine;
             }
@@ -127,6 +144,7 @@ namespace MedicationTracker.ViewModels
 
         #region Data store
         private Medicine _medicine { get; set; } = null;
+        private Medicine _customMedicine { get; set; } = null;
         private DateTime _date { get; set; } = DateTime.Now;
         private TimeSpan _time { get; set; } = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
         #endregion

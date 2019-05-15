@@ -35,8 +35,14 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Entry Text="Custom medicine" />
-            <Entry Text="{Binding NewReminder.Portion}" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label Text="Custom medicine" WidthRequest="135" VerticalOptions="Center" />
+                <Entry Text="{Binding CustomMedicine.Name}" WidthRequest="225" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label Text="Portion" WidthRequest="135" VerticalOptions="Center" />
+                <Entry Text="{Binding NewReminder.Portion}" WidthRequest="225" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
