@@ -7,6 +7,7 @@ using System.Windows.Input;
 
 using Xamarin.Forms;
 
+using MedicationTracker.Interfaces;
 using MedicationTracker.Models;
 using MedicationTracker.Services;
 using MedicationTracker.Views;
@@ -94,6 +95,8 @@ namespace MedicationTracker.ViewModels
 
             LoadMedicinesCommand = new Command(async () => await ExecuteLoadMedicinesCommand());
             SaveReminderCommand = new Command(() => ExecuteSaveReminderCommand());
+
+            DependencyService.Get<IAudio>().PlayAudioFile("light.wav");
         }
 
         async Task ExecuteLoadMedicinesCommand()

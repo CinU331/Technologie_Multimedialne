@@ -6,5 +6,6 @@ namespace MedicationTracker
     {
         public static Color Primary { get; set; } = Color.FromHex("#232426");
         public static Color Secondary { get; set; } = Color.FromHex("#343537");
+        public static Color Tertiary { get; set; } = Color.FromHex("#fafafa");
     }
 }
