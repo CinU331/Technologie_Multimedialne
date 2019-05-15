@@ -7,6 +7,7 @@ using System.Windows.Input;
 
 using Xamarin.Forms;
 
+using MedicationTracker.Interfaces;
 using MedicationTracker.Models;
 using MedicationTracker.Services;
 
@@ -53,6 +54,27 @@ namespace MedicationTracker.ViewModels
                     {
                         Reminders.RemoveAt(i);
                     }
+                }
+
+                return true;
+            });
+
+            // Refreshing time on view every 10 second
+            Device.StartTimer(TimeSpan.FromSeconds(10), () =>
+            {
+                bool ring = false;
+
+                foreach (Reminder r in Reminders)
+                {
+                    if (r.RemainingTime < TimeSpan.FromSeconds(0))
+                    {
+                        ring = true;
+                    }
+                }
+
+                if (ring)
+                {
+                    DependencyService.Get<IAudio>().PlayAudioFile(Settings.StaticSelectedNotificationSound);
                 }
 
                 return true;
