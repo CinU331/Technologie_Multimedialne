@@ -80,7 +80,7 @@ namespace MedicationTracker.ViewModels
                 ID = Guid.NewGuid().ToString(),
                 Medicine = _customMedicine,
                 Date = DateTime.Now,
-                Portion = "Empty"
+                Portion = "Brak"
             };
 
             Medicines = new ObservableCollection<Medicine>();

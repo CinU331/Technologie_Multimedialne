@@ -21,7 +21,7 @@ namespace MedicationTracker.ViewModels
 
         public RemindersViewModel()
         {
-            Title = "Reminders";
+            Title = "Powiadomienia";
             Reminders = new ObservableCollection<Reminder>();
 
             MessagingCenter.Subscribe<NewReminderViewModel, Reminder>(this, "AddReminder", async (obj, reminder) =>
