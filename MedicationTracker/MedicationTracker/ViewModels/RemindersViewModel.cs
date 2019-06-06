@@ -63,11 +63,12 @@ namespace MedicationTracker.ViewModels
             Device.StartTimer(TimeSpan.FromSeconds(10), () =>
             {
                 bool ring = false;
-
+                int id = 0;
                 foreach (Reminder r in Reminders)
                 {
                     if (r.RemainingTime < TimeSpan.FromSeconds(0))
                     {
+                        id = Reminders.IndexOf(r);
                         ring = true;
                     }
                 }
@@ -75,6 +76,7 @@ namespace MedicationTracker.ViewModels
                 if (ring)
                 {
                     DependencyService.Get<IAudio>().PlayAudioFile(Settings.StaticSelectedNotificationSound);
+                    DependencyService.Get<INotify>().Notification("Przypomnienie", Reminders[id].Medicine.Name);
                 }
 
                 return true;

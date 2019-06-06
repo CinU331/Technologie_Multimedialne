@@ -33,38 +33,6 @@ namespace MedicationTracker.Services
                     },
                     Date = DateTime.Now,
                     Portion = "Twice times a day"
-                },
-                new Reminder()
-                {
-                    ID = Guid.NewGuid().ToString(),
-                    Medicine = new Medicine()
-                    {
-                        ID = Guid.NewGuid().ToString(),
-                        Name = "Kolanozol",
-                        Description = "Na kolana",
-                        Image = new Image()
-                        {
-                            Source = ImageSource.FromResource("MedicationTracker.Resources.pills.png")
-                        }
-                    },
-                    Date = DateTime.Now,
-                    Portion = "Twice times a day"
-                },
-                new Reminder()
-                {
-                    ID = Guid.NewGuid().ToString(),
-                    Medicine = new Medicine()
-                    {
-                        ID = Guid.NewGuid().ToString(),
-                        Name = "Kolanozol",
-                        Description = "Na kolana",
-                        Image = new Image()
-                        {
-                            Source = ImageSource.FromResource("MedicationTracker.Resources.pills.png")
-                        }
-                    },
-                    Date = DateTime.Now,
-                    Portion = "Twice times a day"
                 }
             };
 
