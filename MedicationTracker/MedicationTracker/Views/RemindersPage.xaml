@@ -5,7 +5,7 @@
              Title="{Binding Title}"
              x:Name="BrowseRemindersPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="AddReminder_Clicked">
+        <ToolbarItem Text="Dodaj" Clicked="AddReminder_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="UWP" Value="add.png"/>

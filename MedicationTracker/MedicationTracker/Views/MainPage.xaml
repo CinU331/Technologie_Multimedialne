@@ -6,12 +6,12 @@
             x:Class="MedicationTracker.Views.MainPage"
             BarBackgroundColor="{x:Static local:Theme.Secondary}">
     <TabbedPage.Children>
-        <NavigationPage Title="Reminders">
+        <NavigationPage Title="Powiadomienia">
             <x:Arguments>
                 <views:RemindersPage />
             </x:Arguments>
         </NavigationPage>
-        <NavigationPage Title="Settings">
+        <NavigationPage Title="Ustawienia">
             <x:Arguments>
                 <views:SettingsPage />
             </x:Arguments>

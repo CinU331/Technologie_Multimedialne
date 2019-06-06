@@ -4,18 +4,18 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              x:Class="MedicationTracker.Views.NewReminderPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Cancel" Clicked="CancelButton_Clicked" />
-        <ToolbarItem Text="Save" Clicked="SaveReminder_Clicked" Command="{Binding SaveReminderCommand}" />
+        <ToolbarItem Text="Anuluj" Clicked="CancelButton_Clicked" />
+        <ToolbarItem Text="Zapisz" Clicked="SaveReminder_Clicked" Command="{Binding SaveReminderCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" Padding="10">
             <StackLayout Orientation="Vertical" HorizontalOptions="Center">
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Date:" WidthRequest="60" VerticalOptions="Center" />
+                    <Label Text="Data:" WidthRequest="60" VerticalOptions="Center" />
                     <DatePicker HorizontalOptions="Center" Date="{Binding SelectedDate}" MinimumDate="{x:Static sys:DateTime.Now}"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Time:" WidthRequest="60" VerticalOptions="Center" />
+                    <Label Text="Czas:" WidthRequest="60" VerticalOptions="Center" />
                     <TimePicker HorizontalOptions="Center" Time="{Binding SelectedTime}"/>
                 </StackLayout>
             </StackLayout>
@@ -37,11 +37,11 @@
                 </ListView.ItemTemplate>
             </ListView>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Label Text="Custom medicine" WidthRequest="135" VerticalOptions="Center" />
+                <Label Text="Własny lek:" WidthRequest="135" VerticalOptions="Center" />
                 <Entry Text="{Binding CustomMedicine.Name}" WidthRequest="225" />
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Label Text="Portion" WidthRequest="135" VerticalOptions="Center" />
+                <Label Text="Porcja:" WidthRequest="135" VerticalOptions="Center" />
                 <Entry Text="{Binding NewReminder.Portion}" WidthRequest="225" />
             </StackLayout>
         </StackLayout>

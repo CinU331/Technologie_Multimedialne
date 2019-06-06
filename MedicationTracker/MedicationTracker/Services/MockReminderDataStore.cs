@@ -33,7 +33,7 @@ namespace MedicationTracker.Services
                         }
                     },
                     Date = DateTime.Now,
-                    Portion = "Twice times a day"
+                    Portion = "Raz na dzień"
                 },
                 new Reminder()
                 {
@@ -49,7 +49,7 @@ namespace MedicationTracker.Services
                         }
                     },
                     Date = DateTime.Now,
-                    Portion = "Twice times a day"
+                    Portion = "Dwa razy na dzień"
                 },
                 new Reminder()
                 {
@@ -65,7 +65,7 @@ namespace MedicationTracker.Services
                         }
                     },
                     Date = DateTime.Now,
-                    Portion = "Twice times a day"
+                    Portion = "Dwie porcje rano i wieczorem"
                 }
             };
 

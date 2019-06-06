@@ -14,7 +14,7 @@
             </StackLayout>
             <Label Text="{Binding Reminder.Date}" />
             <Label Text="{Binding Reminder.Portion}" />
-            <Button Text="Delete" Command="{Binding DeleteReminderCommand}" Clicked="DeleteButton_Clicked" />
+            <Button Text="Usuń" Command="{Binding DeleteReminderCommand}" Clicked="DeleteButton_Clicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
