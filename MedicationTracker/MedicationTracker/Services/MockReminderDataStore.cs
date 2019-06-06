@@ -16,6 +16,7 @@ namespace MedicationTracker.Services
         public MockReminderDataStore()
         {
             reminders = new List<Reminder>();
+
             List<Reminder> mockReminders = new List<Reminder>()
             {
                 new Reminder()
@@ -24,8 +25,24 @@ namespace MedicationTracker.Services
                     Medicine = new Medicine()
                     {
                         ID = Guid.NewGuid().ToString(),
-                        Name = "Kolanozol",
-                        Description = "Na kolana",
+                        Name = "Baraberol",
+                        Description = "Baraperol w syropie",
+                        Image = new Image()
+                        {
+                            Source = ImageSource.FromResource("MedicationTracker.Resources.pills.png")
+                        }
+                    },
+                    Date = DateTime.Now,
+                    Portion = "Twice times a day"
+                },
+                new Reminder()
+                {
+                    ID = Guid.NewGuid().ToString(),
+                   Medicine = new Medicine()
+                    {
+                        ID = Guid.NewGuid().ToString(),
+                        Name = "Baraberol",
+                        Description = "Baraperol w syropie",
                         Image = new Image()
                         {
                             Source = ImageSource.FromResource("MedicationTracker.Resources.pills.png")
@@ -40,24 +57,8 @@ namespace MedicationTracker.Services
                     Medicine = new Medicine()
                     {
                         ID = Guid.NewGuid().ToString(),
-                        Name = "Kolanozol",
-                        Description = "Na kolana",
-                        Image = new Image()
-                        {
-                            Source = ImageSource.FromResource("MedicationTracker.Resources.pills.png")
-                        }
-                    },
-                    Date = DateTime.Now,
-                    Portion = "Twice times a day"
-                },
-                new Reminder()
-                {
-                    ID = Guid.NewGuid().ToString(),
-                    Medicine = new Medicine()
-                    {
-                        ID = Guid.NewGuid().ToString(),
-                        Name = "Kolanozol",
-                        Description = "Na kolana",
+                        Name = "Baraberol",
+                        Description = "Baraperol w syropie",
                         Image = new Image()
                         {
                             Source = ImageSource.FromResource("MedicationTracker.Resources.pills.png")
