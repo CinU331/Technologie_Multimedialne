@@ -12,6 +12,10 @@ namespace MedicationTracker.Droid
     {
         public void Notification(string title, string text)
         {
+            var intent = new Intent(Android.App.Application.Context, typeof(MainActivity));
+            intent.AddFlags(ActivityFlags.SingleTop);
+            var pendingIntent = PendingIntent.GetActivity(Android.App.Application.Context, 0, intent, PendingIntentFlags.OneShot);
+
             Notification.Builder builder;
             // Instantiate the builder and set notification elements:
             if (Build.VERSION.SdkInt < BuildVersionCodes.O)
@@ -21,7 +25,9 @@ namespace MedicationTracker.Droid
 #pragma warning restore CS0618 // Typ lub składowa jest przestarzała
                     .SetContentTitle(title).SetContentText(text)
                     .SetSmallIcon(Resource.Drawable.pill)
-                    .SetDefaults(NotificationDefaults.Lights | NotificationDefaults.Vibrate);
+                    .SetDefaults(NotificationDefaults.Lights | NotificationDefaults.Vibrate)
+                    .SetContentIntent(pendingIntent)
+                    .SetAutoCancel(true);
             }
             else
             {
@@ -31,7 +37,9 @@ namespace MedicationTracker.Droid
                     .SetContentTitle(title).SetContentText(text)
                     .SetSmallIcon(Resource.Drawable.pill)
                     .SetChannelId("notification")
-                    .SetDefaults(NotificationDefaults.Lights | NotificationDefaults.Vibrate);
+                    .SetDefaults(NotificationDefaults.Lights | NotificationDefaults.Vibrate)
+                    .SetContentIntent(pendingIntent)
+                    .SetAutoCancel(true);
             }
 
             // Build the notification:
