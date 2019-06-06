@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              x:Class="MedicationTracker.Views.NewReminderPage">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Cancel" Clicked="CancelButton_Clicked" />
@@ -10,12 +11,12 @@
         <StackLayout VerticalOptions="Center" Padding="10">
             <StackLayout Orientation="Vertical" HorizontalOptions="Center">
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Data:" WidthRequest="60" VerticalOptions="Center" />
-                    <DatePicker HorizontalOptions="Center" Date="{Binding SelectedDate}" />
+                    <Label Text="Date:" WidthRequest="60" VerticalOptions="Center" />
+                    <DatePicker HorizontalOptions="Center" Date="{Binding SelectedDate}" MinimumDate="{x:Static sys:DateTime.Now}"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Czas:" WidthRequest="60" VerticalOptions="Center" />
-                    <TimePicker HorizontalOptions="Center" Time="{Binding SelectedTime}" />
+                    <Label Text="Time:" WidthRequest="60" VerticalOptions="Center" />
+                    <TimePicker HorizontalOptions="Center" Time="{Binding SelectedTime}"/>
                 </StackLayout>
             </StackLayout>
             <ListView ItemsSource="{Binding Medicines}"
