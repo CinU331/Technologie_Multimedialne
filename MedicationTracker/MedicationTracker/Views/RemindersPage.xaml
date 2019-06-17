@@ -34,7 +34,7 @@
                                         <Label Text="{Binding Medicine.Name}" FontSize="Medium" />
                                         <Label Text="{Binding Medicine.Description}" />
                                     </StackLayout>
-                                    <Label Text="{Binding RemainingTime, StringFormat='{}{0:hh\\:mm\\:ss}'}" VerticalOptions="Center" />
+                                    <Label Text="{Binding RemainingTime, StringFormat='{}{0:hh\\:mm}'}" VerticalOptions="Center" />
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>
