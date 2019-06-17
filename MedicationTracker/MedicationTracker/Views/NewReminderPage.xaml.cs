@@ -1,8 +1,6 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
 using MedicationTracker.ViewModels;
-using Syncfusion.XForms.PopupLayout;
 
 namespace MedicationTracker.Views
 {
