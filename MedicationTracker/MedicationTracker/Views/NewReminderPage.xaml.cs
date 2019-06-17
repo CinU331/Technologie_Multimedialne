@@ -32,5 +32,18 @@ namespace MedicationTracker.Views
 
             if (viewModel.Medicines.Count == 0) { viewModel.LoadMedicinesCommand.Execute(null); }
         }
+
+        private void Entry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(viewModel.CustomMedicine.Name.Length != 0)
+            {
+                LV_Medicines.IsEnabled = false;
+                LV_Medicines.SelectedItem = null;
+            }
+            else
+            {
+                LV_Medicines.IsEnabled = true;
+            }
+        }
     }
 }

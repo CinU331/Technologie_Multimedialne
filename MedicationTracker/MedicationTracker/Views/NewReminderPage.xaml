@@ -19,7 +19,7 @@
                     <TimePicker HorizontalOptions="Center" Time="{Binding SelectedTime}"/>
                 </StackLayout>
             </StackLayout>
-            <ListView ItemsSource="{Binding Medicines}"
+            <ListView x:Name="LV_Medicines" ItemsSource="{Binding Medicines}"
                       SelectedItem="{Binding SelectedMedicine}"
                       HasUnevenRows="True">
                 <ListView.ItemTemplate>
@@ -38,7 +38,7 @@
             </ListView>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Label Text="Własny lek:" WidthRequest="135" VerticalOptions="Center" />
-                <Entry Text="{Binding CustomMedicine.Name}" WidthRequest="225" />
+                <Entry Text="{Binding CustomMedicine.Name}" WidthRequest="225"  TextChanged="Entry_TextChanged"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Label Text="Porcja:" WidthRequest="135" VerticalOptions="Center" />
