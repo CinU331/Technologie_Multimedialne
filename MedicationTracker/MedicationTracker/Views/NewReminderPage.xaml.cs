@@ -2,6 +2,7 @@
 using Xamarin.Forms.Xaml;
 
 using MedicationTracker.ViewModels;
+using Syncfusion.XForms.PopupLayout;
 
 namespace MedicationTracker.Views
 {
@@ -9,6 +10,7 @@ namespace MedicationTracker.Views
 	public partial class NewReminderPage : ContentPage
 	{
         NewReminderViewModel viewModel;
+        
 
         public NewReminderPage()
 		{
@@ -44,6 +46,19 @@ namespace MedicationTracker.Views
             {
                 LV_Medicines.IsEnabled = true;
             }
+        }
+
+        async private void LV_Medicines_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if(viewModel.SelectedMedicine.ID=="Własny")
+            {
+                await Navigation.PushModalAsync(new NavigationPage(new CustomMedicinePage(viewModel)));
+                LV_Medicines.ItemsSource = viewModel.Medicines;
+            }
+        }
+
+        private void ClickToShowPopup_Clicked(object sender, ClickedEventArgs e)
+        {
         }
     }
 }

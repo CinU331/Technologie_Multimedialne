@@ -17,62 +17,62 @@ namespace MedicationTracker.Services
         {
             reminders = new List<Reminder>();
 
-            List<Reminder> mockReminders = new List<Reminder>()
-            {
-                new Reminder()
-                {
-                    ID = Guid.NewGuid().ToString(),
-                    Medicine = new Medicine()
-                    {
-                        ID = Guid.NewGuid().ToString(),
-                        Name = "Baraberol",
-                        Description = "Baraperol w syropie",
-                        Image = new Image()
-                        {
-                            Source = ImageSource.FromResource("MedicationTracker.Resources.pills.png")
-                        }
-                    },
-                    Date = DateTime.Now,
-                    Portion = "Raz na dzień"
-                },
-                new Reminder()
-                {
-                    ID = Guid.NewGuid().ToString(),
-                   Medicine = new Medicine()
-                    {
-                        ID = Guid.NewGuid().ToString(),
-                        Name = "Baraberol",
-                        Description = "Baraperol w syropie",
-                        Image = new Image()
-                        {
-                            Source = ImageSource.FromResource("MedicationTracker.Resources.pills.png")
-                        }
-                    },
-                    Date = DateTime.Now,
-                    Portion = "Dwa razy na dzień"
-                },
-                new Reminder()
-                {
-                    ID = Guid.NewGuid().ToString(),
-                    Medicine = new Medicine()
-                    {
-                        ID = Guid.NewGuid().ToString(),
-                        Name = "Baraberol",
-                        Description = "Baraperol w syropie",
-                        Image = new Image()
-                        {
-                            Source = ImageSource.FromResource("MedicationTracker.Resources.pills.png")
-                        }
-                    },
-                    Date = DateTime.Now,
-                    Portion = "Dwie porcje rano i wieczorem"
-                }
-            };
+            //List<Reminder> mockReminders = new List<Reminder>()
+            //{
+            //    new Reminder()
+            //    {
+            //        ID = Guid.NewGuid().ToString(),
+            //        Medicine = new Medicine()
+            //        {
+            //            ID = Guid.NewGuid().ToString(),
+            //            Name = "Baraberol",
+            //            Description = "Baraperol w syropie",
+            //            Image = new Image()
+            //            {
+            //                Source = ImageSource.FromResource("MedicationTracker.Resources.pills.png")
+            //            }
+            //        },
+            //        Date = DateTime.Now,
+            //        Portion = "Raz na dzień"
+            //    },
+            //    new Reminder()
+            //    {
+            //        ID = Guid.NewGuid().ToString(),
+            //       Medicine = new Medicine()
+            //        {
+            //            ID = Guid.NewGuid().ToString(),
+            //            Name = "Baraberol",
+            //            Description = "Baraperol w syropie",
+            //            Image = new Image()
+            //            {
+            //                Source = ImageSource.FromResource("MedicationTracker.Resources.pills.png")
+            //            }
+            //        },
+            //        Date = DateTime.Now,
+            //        Portion = "Dwa razy na dzień"
+            //    },
+            //    new Reminder()
+            //    {
+            //        ID = Guid.NewGuid().ToString(),
+            //        Medicine = new Medicine()
+            //        {
+            //            ID = Guid.NewGuid().ToString(),
+            //            Name = "Baraberol",
+            //            Description = "Baraperol w syropie",
+            //            Image = new Image()
+            //            {
+            //                Source = ImageSource.FromResource("MedicationTracker.Resources.pills.png")
+            //            }
+            //        },
+            //        Date = DateTime.Now,
+            //        Portion = "Dwie porcje rano i wieczorem"
+            //    }
+            //};
 
-            foreach (Reminder r in mockReminders)
-            {
-                reminders.Add(r);
-            }
+            //foreach (Reminder r in mockReminders)
+            //{
+            //    reminders.Add(r);
+            //}
         }
 
         public async Task<bool> AddItemAsync(Reminder reminder)

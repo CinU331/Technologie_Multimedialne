@@ -112,6 +112,8 @@ namespace MedicationTracker.ViewModels
                 {
                     Medicines.Add(m);
                 }
+
+                Medicines.Add(new Medicine {ID="Własny", Name = "Własny lek", Description = "Twój własny lek", Image = new Image { Source = ImageSource.FromResource("MedicationTracker.Resources.pills.png") } });
             }
             catch (Exception ex) { Debug.WriteLine(ex); }
             finally { IsBusy = false; }

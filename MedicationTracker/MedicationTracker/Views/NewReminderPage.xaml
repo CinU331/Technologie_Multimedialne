@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:sfPopup="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms"
              x:Class="MedicationTracker.Views.NewReminderPage">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Anuluj" Clicked="CancelButton_Clicked" />
@@ -19,9 +20,11 @@
                     <TimePicker HorizontalOptions="Center" Time="{Binding SelectedTime}"/>
                 </StackLayout>
             </StackLayout>
-            <ListView x:Name="LV_Medicines" ItemsSource="{Binding Medicines}"
+            <ListView x:Name="LV_Medicines" 
+                      ItemsSource="{Binding Medicines}"
                       SelectedItem="{Binding SelectedMedicine}"
-                      HasUnevenRows="True">
+                      HasUnevenRows="True"
+                      ItemSelected="LV_Medicines_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
