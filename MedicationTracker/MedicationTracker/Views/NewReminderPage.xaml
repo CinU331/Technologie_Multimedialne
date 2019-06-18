@@ -40,11 +40,11 @@
             </ListView>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Label Text="Powtarzanie:" WidthRequest="135" VerticalOptions="Center" />
-                <Picker x:Name="TimeSpanPicker" Title="Wybierz powtarzanie" WidthRequest="225" ItemsSource="{Binding TimeSpans}"/>
+                <Picker x:Name="TimeSpanPicker" Title="Wybierz powtarzanie" WidthRequest="225" ItemsSource="{Binding TimeSpans}" HorizontalOptions="Center"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Label Text="Porcja:" WidthRequest="135" VerticalOptions="Center" />
-                <Entry Text="{Binding NewReminder.Portion}" WidthRequest="225" />
+                <Entry Text="{Binding NewReminder.Portion}" WidthRequest="225" HorizontalTextAlignment="Center"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

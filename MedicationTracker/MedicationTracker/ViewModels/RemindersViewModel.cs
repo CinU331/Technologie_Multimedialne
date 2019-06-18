@@ -55,7 +55,7 @@ namespace MedicationTracker.ViewModels
                         if (Reminders[i].TimeSpan.TotalSeconds != 0)
                         {
                             Reminder reminder = Reminders[i];
-                            reminder.Date.Add(reminder.TimeSpan);
+                            reminder.Date = reminder.Date.Add(reminder.TimeSpan);
                             Reminders.Add(reminder);
                         }
                         Reminders.RemoveAt(i);

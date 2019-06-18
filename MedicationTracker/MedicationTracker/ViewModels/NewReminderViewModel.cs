@@ -57,23 +57,17 @@ namespace MedicationTracker.ViewModels
         {
             Title = "New reminder";
 
-            // Create empty medicine
-            _customMedicine = new Medicine()
-            {
-                ID = Guid.NewGuid().ToString(),
-                Name = "",
-                Description = ""
-            };
-
             // Create empty reminder
             NewReminder = new Reminder()
             {
                 ID = Guid.NewGuid().ToString(),
-                Medicine = _customMedicine,
+                Medicine = new Medicine(),
                 Date = DateTime.Now,
                 Portion = "Brak",
                 TimeSpan = new TimeSpan(0,0,0)
             };
+
+            SelectedTime = SelectedTime.Add(new TimeSpan(0, 1, 0));
 
             Medicines = new ObservableCollection<Medicine>();
 
@@ -121,25 +115,24 @@ namespace MedicationTracker.ViewModels
             if (SelectedMedicine != null)
             {
                 NewReminder.Medicine = SelectedMedicine;
-            }
 
-            NewReminder.Date = new DateTime(
+                NewReminder.Date = new DateTime(
                 SelectedDate.Year,
                 SelectedDate.Month,
                 SelectedDate.Day,
                 SelectedTime.Hours,
                 SelectedTime.Minutes,
                 SelectedTime.Seconds);
-            NewReminder.RemainingTime = NewReminder.Date - DateTime.Now;
+                NewReminder.RemainingTime = NewReminder.Date - DateTime.Now;
 
-            MessagingCenter.Send(this, "AddReminder", NewReminder);
+                MessagingCenter.Send(this, "AddReminder", NewReminder);
+            }
         }
 
         public IDataStore<Medicine> MedicineDataStore => DependencyService.Get<IDataStore<Medicine>>() ?? new MockMedicineDataStore();
 
         #region Data store
         private Medicine _medicine { get; set; } = null;
-        private Medicine _customMedicine { get; set; } = null;
         private DateTime _date { get; set; } = DateTime.Now;
         private TimeSpan _time { get; set; } = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
         #endregion
