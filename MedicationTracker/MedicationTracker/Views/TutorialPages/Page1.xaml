@@ -4,9 +4,12 @@
              x:Class="MedicationTracker.Views.TutorialPages.Page1">
     <ContentPage.Content>
         <StackLayout>
-            <ImageButton Source="pill.png"
+            <Label Text="Aby dodać nowe powiadomienie należy kliknąć przycisk Dodaj."
+                VerticalOptions="End"
+                HorizontalOptions="Center" />
+            <ImageButton Source="tut1.png"
                     HorizontalOptions="FillAndExpand"
-                    VerticalOptions="FillAndExpand" 
+                    VerticalOptions="Start" 
                     Clicked="ImageButton_ClickedAsync" />
         </StackLayout>
     </ContentPage.Content>

@@ -12,9 +12,5 @@ namespace MedicationTracker.Views.TutorialPages
 		{
 			InitializeComponent ();
 		}
-        async private void ImageButton_ClickedAsync(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new NavigationPage(new Page6()));
-        }
     }
 }

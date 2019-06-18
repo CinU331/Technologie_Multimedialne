@@ -4,7 +4,10 @@
              x:Class="MedicationTracker.Views.TutorialPages.Page4">
     <ContentPage.Content>
         <StackLayout>
-            <ImageButton Source="pill.png"
+            <Label Text="Tutaj możesz ustawić powtarzanie powiadomienia co daną ilość czasu oraz informacje dotyczące proporcji przyjmowania leku."
+                VerticalOptions="End"
+                HorizontalOptions="Center" />
+            <ImageButton Source="tut4.png"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="FillAndExpand" 
                     Clicked="ImageButton_ClickedAsync" />

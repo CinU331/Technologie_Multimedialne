@@ -3,7 +3,10 @@
              x:Class="MedicationTracker.Views.TutorialPages.Page2">
     <ContentPage.Content>
         <StackLayout>
-            <ImageButton Source="pill.png"
+            <Label Text="Tutaj możesz ustawić kiedy chcesz dostać powiadomienie."
+                VerticalOptions="End"
+                HorizontalOptions="Center" />
+            <ImageButton Source="tut2.png"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="FillAndExpand" 
                     Clicked="ImageButton_ClickedAsync" />
