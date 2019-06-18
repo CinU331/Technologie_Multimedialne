@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MedicationTracker"
+             xmlns:controls="clr-namespace:Xamd.ImageCarousel.Forms.Plugin.Abstractions;assembly=Xamd.ImageCarousel.Forms.Plugin.Abstractions"
              x:Class="MedicationTracker.Views.SettingsPage">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
@@ -24,6 +25,7 @@
                         </StackLayout.GestureRecognizers>
                         <Label Text="Agresywny dźwięk" HorizontalOptions="Center" TextColor="{x:Static local:Theme.Tertiary}" />
                     </StackLayout>
+                    <Button x:Name="TutorialButton" Text="Zobacz poradnik" Clicked="TutorialButton_Clicked" />
                 </StackLayout>
             </StackLayout>
         </StackLayout>

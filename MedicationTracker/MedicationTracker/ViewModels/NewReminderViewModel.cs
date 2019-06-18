@@ -16,6 +16,7 @@ namespace MedicationTracker.ViewModels
     public class NewReminderViewModel : BaseViewModel
     {
         public Reminder NewReminder { get; set; }
+        public List<TimeSpan> TimeSpans = new List<TimeSpan> { new TimeSpan(0, 0, 0), new TimeSpan(0, 1, 0), new TimeSpan(6, 0, 0), new TimeSpan(12, 0, 0), new TimeSpan(24, 0, 0) };
 
         public Medicine SelectedMedicine
         {
@@ -23,16 +24,6 @@ namespace MedicationTracker.ViewModels
             set
             {
                 _medicine = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public Medicine CustomMedicine
-        {
-            get { return _customMedicine; }
-            set
-            {
-                _customMedicine = value;
                 OnPropertyChanged();
             }
         }
@@ -80,7 +71,8 @@ namespace MedicationTracker.ViewModels
                 ID = Guid.NewGuid().ToString(),
                 Medicine = _customMedicine,
                 Date = DateTime.Now,
-                Portion = "Brak"
+                Portion = "Brak",
+                TimeSpan = new TimeSpan(0,0,0)
             };
 
             Medicines = new ObservableCollection<Medicine>();
@@ -112,8 +104,13 @@ namespace MedicationTracker.ViewModels
                 {
                     Medicines.Add(m);
                 }
-
-                Medicines.Add(new Medicine {ID="Własny", Name = "Własny lek", Description = "Twój własny lek", Image = new Image { Source = ImageSource.FromResource("MedicationTracker.Resources.pills.png") } });
+                Medicines.Add(new Medicine
+                {
+                    ID = "Własny",
+                    Name = "Twój własny lek",
+                    Description = "Kliknij aby go zmodyfikować",
+                    Image = new Image { Source = ImageSource.FromResource("MedicationTracker.Resources.pills.png") }
+                });
             }
             catch (Exception ex) { Debug.WriteLine(ex); }
             finally { IsBusy = false; }
@@ -121,11 +118,7 @@ namespace MedicationTracker.ViewModels
 
         void ExecuteSaveReminderCommand()
         {
-            if (CustomMedicine.Name != "")
-            {
-                NewReminder.Medicine = _customMedicine;
-            }
-            else if (SelectedMedicine != null)
+            if (SelectedMedicine != null)
             {
                 NewReminder.Medicine = SelectedMedicine;
             }

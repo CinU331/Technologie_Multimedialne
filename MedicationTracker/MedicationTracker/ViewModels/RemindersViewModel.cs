@@ -52,6 +52,12 @@ namespace MedicationTracker.ViewModels
                     // Removing old reminders
                     if (Reminders[i].RemainingTime < -TimeSpan.FromSeconds(Settings.StaticSecondsToRemoveOldReminders))
                     {
+                        if (Reminders[i].TimeSpan.TotalSeconds != 0)
+                        {
+                            Reminder reminder = Reminders[i];
+                            reminder.Date.Add(reminder.TimeSpan);
+                            Reminders.Add(reminder);
+                        }
                         Reminders.RemoveAt(i);
                     }
                 }

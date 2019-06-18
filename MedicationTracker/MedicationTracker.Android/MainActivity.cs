@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Xamd.ImageCarousel.Forms.Plugin.Droid;
 
 namespace MedicationTracker.Droid
 {
@@ -14,6 +15,7 @@ namespace MedicationTracker.Droid
 
             base.OnCreate(savedInstanceState);
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            ImageCarouselRenderer.Init();
             LoadApplication(new App());
             CreateNotificationChannel();
         }

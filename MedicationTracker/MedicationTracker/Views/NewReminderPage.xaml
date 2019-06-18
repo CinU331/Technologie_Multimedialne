@@ -30,8 +30,8 @@
                             <StackLayout Orientation="Horizontal" Padding="10">
                                 <Image Source="{Binding Image.Source}" HeightRequest="64" VerticalOptions="Center" />
                                 <StackLayout Orientation="Vertical" VerticalOptions="Center">
-                                    <Label Text="{Binding Name}" FontSize="Medium" />
-                                    <Label Text="{Binding Description}" />
+                                    <Label x:Name="NameLabel" Text="{Binding Name}" FontSize="Medium" />
+                                    <Label x:Name="DescLabel" Text="{Binding Description}" />
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>
@@ -39,8 +39,8 @@
                 </ListView.ItemTemplate>
             </ListView>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Label Text="Własny lek:" WidthRequest="135" VerticalOptions="Center" />
-                <Entry Text="{Binding CustomMedicine.Name}" WidthRequest="225"  TextChanged="Entry_TextChanged"/>
+                <Label Text="Powtarzanie:" WidthRequest="135" VerticalOptions="Center" />
+                <Picker x:Name="TimeSpanPicker" Title="Wybierz powtarzanie" WidthRequest="225" ItemsSource="{Binding TimeSpans}"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Label Text="Porcja:" WidthRequest="135" VerticalOptions="Center" />
