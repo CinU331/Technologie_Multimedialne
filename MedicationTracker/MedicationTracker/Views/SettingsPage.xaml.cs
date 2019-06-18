@@ -2,12 +2,11 @@
 using Xamarin.Forms.Xaml;
 
 using MedicationTracker.ViewModels;
-using Xamd.ImageCarousel.Forms.Plugin.Abstractions;
-using System.Collections.ObjectModel;
+using MedicationTracker.Views.TutorialPages;
 
 namespace MedicationTracker.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SettingsPage : ContentPage
 	{
 		public SettingsPage()
@@ -18,7 +17,7 @@ namespace MedicationTracker.Views
 
         async private void TutorialButton_Clicked(object sender, System.EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new TutorialPage()));
+            await Navigation.PushModalAsync(new NavigationPage(new Page1()));
         }
     }
 }
