@@ -1,4 +1,4 @@
-# Medication Tracker
-To build and run this project you will need Microsoft Visual Studio with installed additional workload - Mobile development with .NET.
-If you don't have the mentioned workload, you can download it with the Visual Studio Installer.
-To run app on Android emulator you just need to open the project with Visual Studio and then select Debug -> Start Without Debugging (Ctrl+F5). (More info about setting up the Android SDK: https://docs.microsoft.com/en-us/xamarin/android/get-started/installation/android-sdk?tabs=windows)
+### Medication Tracker
+- To build and run this project you will need __Microsoft Visual Studio__ with installed additional workload - __Mobile development with .NET__.  
+- If you don't have the mentioned workload, you can download it with the __Visual Studio Installer__.  
+- To run app on Android emulator you just need to open the project with Visual Studio and then select __Debug -> Start Without Debugging__ (Ctrl+F5). ([More info about setting up the Android SDK](https://docs.microsoft.com/en-us/xamarin/android/get-started/installation/android-sdk?tabs=windows) )
