@@ -2,28 +2,30 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MedicationTracker"
+             xmlns:controls="clr-namespace:Xamd.ImageCarousel.Forms.Plugin.Abstractions;assembly=Xamd.ImageCarousel.Forms.Plugin.Abstractions"
              x:Class="MedicationTracker.Views.SettingsPage">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
             <StackLayout Orientation="Horizontal">
-                <Label Text="Remove old reminders after:" VerticalOptions="Center" />
+                <Label Text="Ilość sekund po których usuwane są powiadomienia:" VerticalOptions="Center" />
                 <Entry Text="{Binding Settings.SecondsToRemoveOldReminders}" />
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Label Text="Notification Sound" VerticalOptions="Center" />
+                <Label Text="Dźwięk powiadomienia" VerticalOptions="Center" />
                 <StackLayout Orientation="Vertical">
                     <StackLayout WidthRequest="200" HeightRequest="48" BackgroundColor="{x:Static local:Theme.Secondary}">
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Settings.SetLightSoundCommand}" />
                         </StackLayout.GestureRecognizers>
-                        <Label Text="Light Sound" HorizontalOptions="Center" TextColor="{x:Static local:Theme.Tertiary}" />
+                        <Label Text="Lekki dźwięk" HorizontalOptions="Center" TextColor="{x:Static local:Theme.Tertiary}" />
                     </StackLayout>
                     <StackLayout WidthRequest="200" HeightRequest="48" BackgroundColor="{x:Static local:Theme.Secondary}">
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Settings.SetRoughSoundCommand}" />
                         </StackLayout.GestureRecognizers>
-                        <Label Text="Rough Sound" HorizontalOptions="Center" TextColor="{x:Static local:Theme.Tertiary}" />
+                        <Label Text="Agresywny dźwięk" HorizontalOptions="Center" TextColor="{x:Static local:Theme.Tertiary}" />
                     </StackLayout>
+                    <Button x:Name="TutorialButton" Text="Zobacz poradnik" Clicked="TutorialButton_Clicked" />
                 </StackLayout>
             </StackLayout>
         </StackLayout>

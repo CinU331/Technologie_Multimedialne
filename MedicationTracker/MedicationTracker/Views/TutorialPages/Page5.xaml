@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MedicationTracker.Views.TutorialPages.Page5">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Gdy już wszystko ustawisz według swoich upodobań wystarczy nacisnąć przycisk Zapisz."
+                VerticalOptions="End"
+                HorizontalOptions="Center" />
+            <ImageButton Source="tut5.png"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -9,6 +9,7 @@ namespace MedicationTracker.Models
         public string ID { get; set; }
         public Medicine Medicine { get; set; }
         public DateTime Date { get; set; }
+        public TimeSpan TimeSpan { get; set; }
         public string Portion { get; set; }
 
         public TimeSpan RemainingTime

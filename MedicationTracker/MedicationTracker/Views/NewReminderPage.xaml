@@ -1,34 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              x:Class="MedicationTracker.Views.NewReminderPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Cancel" Clicked="CancelButton_Clicked" />
-        <ToolbarItem Text="Save" Clicked="SaveReminder_Clicked" Command="{Binding SaveReminderCommand}" />
+        <ToolbarItem Text="Anuluj" Clicked="CancelButton_Clicked" />
+        <ToolbarItem Text="Zapisz" Clicked="SaveReminder_Clicked" Command="{Binding SaveReminderCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" Padding="10">
             <StackLayout Orientation="Vertical" HorizontalOptions="Center">
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Data:" WidthRequest="60" VerticalOptions="Center" />
-                    <DatePicker HorizontalOptions="Center" Date="{Binding SelectedDate}" />
+                    <DatePicker HorizontalOptions="Center" Date="{Binding SelectedDate}" MinimumDate="{x:Static sys:DateTime.Now}"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Czas:" WidthRequest="60" VerticalOptions="Center" />
-                    <TimePicker HorizontalOptions="Center" Time="{Binding SelectedTime}" />
+                    <TimePicker HorizontalOptions="Center" Time="{Binding SelectedTime}"/>
                 </StackLayout>
             </StackLayout>
-            <ListView ItemsSource="{Binding Medicines}"
+            <ListView x:Name="LV_Medicines" 
+                      ItemsSource="{Binding Medicines}"
                       SelectedItem="{Binding SelectedMedicine}"
-                      HasUnevenRows="True">
+                      HasUnevenRows="True"
+                      ItemSelected="LV_Medicines_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" Padding="10">
                                 <Image Source="{Binding Image.Source}" HeightRequest="64" VerticalOptions="Center" />
                                 <StackLayout Orientation="Vertical" VerticalOptions="Center">
-                                    <Label Text="{Binding Name}" FontSize="Medium" />
-                                    <Label Text="{Binding Description}" />
+                                    <Label x:Name="NameLabel" Text="{Binding Name}" FontSize="Medium" />
+                                    <Label x:Name="DescLabel" Text="{Binding Description}" />
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>
@@ -36,12 +39,12 @@
                 </ListView.ItemTemplate>
             </ListView>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Label Text="Custom medicine" WidthRequest="135" VerticalOptions="Center" />
-                <Entry Text="{Binding CustomMedicine.Name}" WidthRequest="225" />
+                <Label Text="Powtarzanie:" WidthRequest="135" VerticalOptions="Center" />
+                <Picker x:Name="TimeSpanPicker" Title="Wybierz powtarzanie" WidthRequest="225" ItemsSource="{Binding TimeSpans}" HorizontalOptions="Center"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Label Text="Portion" WidthRequest="135" VerticalOptions="Center" />
-                <Entry Text="{Binding NewReminder.Portion}" WidthRequest="225" />
+                <Label Text="Porcja:" WidthRequest="135" VerticalOptions="Center" />
+                <Entry Text="{Binding NewReminder.Portion}" WidthRequest="225" HorizontalTextAlignment="Center"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

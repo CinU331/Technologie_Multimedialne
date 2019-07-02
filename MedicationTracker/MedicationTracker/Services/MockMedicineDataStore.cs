@@ -16,33 +16,9 @@ namespace MedicationTracker.Services
         public MockMedicineDataStore()
         {
             medicines = new List<Medicine>();
-            var mockMedicines = new List<Medicine>()
+            if (medicines.Count == 0)
             {
-                new Medicine()
-                {
-                    ID = Guid.NewGuid().ToString(),
-                    Name = "Kolanozol",
-                    Description = "Na kolana",
-                    Image = new Image()
-                    {
-                        Source = ImageSource.FromResource("MedicationTracker.Resources.pills.png")
-                    }
-                },
-                new Medicine()
-                {
-                    ID = Guid.NewGuid().ToString(),
-                    Name = "Aerozol",
-                    Description = "Krystalicznie świeże powietrze",
-                    Image = new Image()
-                    {
-                        Source = ImageSource.FromResource("MedicationTracker.Resources.pills.png")
-                    }
-                }
-            };
-
-            foreach (Medicine m in mockMedicines)
-            {
-                medicines.Add(m);
+                Task.Run(async () => { medicines = await RestService.GetMedicinesAsync(); }).GetAwaiter().GetResult();
             }
         }
 

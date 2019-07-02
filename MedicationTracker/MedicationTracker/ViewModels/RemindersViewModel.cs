@@ -21,7 +21,7 @@ namespace MedicationTracker.ViewModels
 
         public RemindersViewModel()
         {
-            Title = "Reminders";
+            Title = "Powiadomienia";
             Reminders = new ObservableCollection<Reminder>();
 
             MessagingCenter.Subscribe<NewReminderViewModel, Reminder>(this, "AddReminder", async (obj, reminder) =>
@@ -52,6 +52,12 @@ namespace MedicationTracker.ViewModels
                     // Removing old reminders
                     if (Reminders[i].RemainingTime < -TimeSpan.FromSeconds(Settings.StaticSecondsToRemoveOldReminders))
                     {
+                        if (Reminders[i].TimeSpan.TotalSeconds != 0)
+                        {
+                            Reminder reminder = Reminders[i];
+                            reminder.Date = reminder.Date.Add(reminder.TimeSpan);
+                            Reminders.Add(reminder);
+                        }
                         Reminders.RemoveAt(i);
                     }
                 }
@@ -63,11 +69,12 @@ namespace MedicationTracker.ViewModels
             Device.StartTimer(TimeSpan.FromSeconds(10), () =>
             {
                 bool ring = false;
-
+                int id = 0;
                 foreach (Reminder r in Reminders)
                 {
                     if (r.RemainingTime < TimeSpan.FromSeconds(0))
                     {
+                        id = Reminders.IndexOf(r);
                         ring = true;
                     }
                 }
@@ -75,6 +82,7 @@ namespace MedicationTracker.ViewModels
                 if (ring)
                 {
                     DependencyService.Get<IAudio>().PlayAudioFile(Settings.StaticSelectedNotificationSound);
+                    DependencyService.Get<INotify>().Notification("Przypomnienie", Reminders[id].Medicine.Name);
                 }
 
                 return true;

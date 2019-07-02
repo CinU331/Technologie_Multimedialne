@@ -16,6 +16,7 @@ namespace MedicationTracker.ViewModels
     public class NewReminderViewModel : BaseViewModel
     {
         public Reminder NewReminder { get; set; }
+        public List<TimeSpan> TimeSpans = new List<TimeSpan> { new TimeSpan(0, 0, 0), new TimeSpan(0, 1, 0), new TimeSpan(6, 0, 0), new TimeSpan(12, 0, 0), new TimeSpan(24, 0, 0) };
 
         public Medicine SelectedMedicine
         {
@@ -23,16 +24,6 @@ namespace MedicationTracker.ViewModels
             set
             {
                 _medicine = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public Medicine CustomMedicine
-        {
-            get { return _customMedicine; }
-            set
-            {
-                _customMedicine = value;
                 OnPropertyChanged();
             }
         }
@@ -66,22 +57,17 @@ namespace MedicationTracker.ViewModels
         {
             Title = "New reminder";
 
-            // Create empty medicine
-            _customMedicine = new Medicine()
-            {
-                ID = Guid.NewGuid().ToString(),
-                Name = "",
-                Description = ""
-            };
-
             // Create empty reminder
             NewReminder = new Reminder()
             {
                 ID = Guid.NewGuid().ToString(),
-                Medicine = _customMedicine,
+                Medicine = new Medicine(),
                 Date = DateTime.Now,
-                Portion = "Empty"
+                Portion = "Brak",
+                TimeSpan = new TimeSpan(0,0,0)
             };
+
+            SelectedTime = SelectedTime.Add(new TimeSpan(0, 1, 0));
 
             Medicines = new ObservableCollection<Medicine>();
 
@@ -112,6 +98,13 @@ namespace MedicationTracker.ViewModels
                 {
                     Medicines.Add(m);
                 }
+                Medicines.Add(new Medicine
+                {
+                    ID = "Własny",
+                    Name = "Twój własny lek",
+                    Description = "Kliknij aby go zmodyfikować",
+                    Image = new Image { Source = ImageSource.FromResource("MedicationTracker.Resources.pills.png") }
+                });
             }
             catch (Exception ex) { Debug.WriteLine(ex); }
             finally { IsBusy = false; }
@@ -119,32 +112,27 @@ namespace MedicationTracker.ViewModels
 
         void ExecuteSaveReminderCommand()
         {
-            if (CustomMedicine.Name != "")
-            {
-                NewReminder.Medicine = _customMedicine;
-            }
-            else if (SelectedMedicine != null)
+            if (SelectedMedicine != null)
             {
                 NewReminder.Medicine = SelectedMedicine;
-            }
 
-            NewReminder.Date = new DateTime(
+                NewReminder.Date = new DateTime(
                 SelectedDate.Year,
                 SelectedDate.Month,
                 SelectedDate.Day,
                 SelectedTime.Hours,
                 SelectedTime.Minutes,
                 SelectedTime.Seconds);
-            NewReminder.RemainingTime = NewReminder.Date - DateTime.Now;
+                NewReminder.RemainingTime = NewReminder.Date - DateTime.Now;
 
-            MessagingCenter.Send(this, "AddReminder", NewReminder);
+                MessagingCenter.Send(this, "AddReminder", NewReminder);
+            }
         }
 
         public IDataStore<Medicine> MedicineDataStore => DependencyService.Get<IDataStore<Medicine>>() ?? new MockMedicineDataStore();
 
         #region Data store
         private Medicine _medicine { get; set; } = null;
-        private Medicine _customMedicine { get; set; } = null;
         private DateTime _date { get; set; } = DateTime.Now;
         private TimeSpan _time { get; set; } = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
         #endregion

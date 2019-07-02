@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MedicationTracker.Views.CustomMedicinePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="20">
+                <Label FontSize="Large" Text="Nazwa:"/>
+                <Entry x:Name="NameEntry" FontSize="Large" WidthRequest="320" Text="{Binding CustomMedicine.Name}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="20">
+                <Label FontSize="Large" Text="Opis:"/>
+                <Entry x:Name="DescEntry" FontSize="Large" WidthRequest="320" Text="{Binding CustomMedicine.Description}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="10">
+                <Button x:Name="DodajButton" Text="Dodaj" Margin="10" Clicked="DodajButton_Clicked"/>
+                <Button x:Name="AnulujButton" Text="Anuluj" Margin="10" Clicked="AnulujButton_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
